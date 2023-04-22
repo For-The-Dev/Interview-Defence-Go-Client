@@ -79,14 +79,9 @@ const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 
-  html,body,#root {
+  #root,html,body {
     width: 100%;
     height: 100%;
-  }
-
-  body {
-    background-color: ${({ theme }) => theme.color.primaryBg};
-    color : ${({ theme }) => theme.color.primaryFontColor}
   }
 
 `;
