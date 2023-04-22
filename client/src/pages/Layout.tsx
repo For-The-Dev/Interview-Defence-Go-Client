@@ -23,6 +23,17 @@ const MainContainer = styled.div`
 
 const PageContainer = styled.div`
   position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    min-width: 350px;
+    min-height: 98px;
+    padding: 0 0.5rem;
+  }
 `;
 
 export default Layout;

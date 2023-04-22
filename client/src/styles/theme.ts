@@ -1,4 +1,4 @@
-import baseStyled, { ThemedStyledInterface } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
 // https://velog.io/@johnyworld/Styled-Components-%EB%A1%9C-Dark-Mode-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0 참고
 const font = {
   // xxl: '24px',
@@ -36,16 +36,12 @@ export const lightColor: ColorType = {
   btnBg: '0075FF',
 };
 
-export const defalutTheme = {
+export const defalutTheme: DefaultTheme = {
   color: darkColor,
   font,
 };
 
-export type ThemeType = typeof defalutTheme;
-
-export const lightTheme: ThemeType = {
+export const lightTheme: DefaultTheme = {
   color: lightColor,
   font,
 };
-
-export const styled = baseStyled as ThemedStyledInterface<ThemeType>;

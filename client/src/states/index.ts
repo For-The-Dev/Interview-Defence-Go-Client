@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 
-export type ModeState = 'dark' | 'light';
+export type ModeState = boolean;
 
 export const modeState = atom<ModeState>({
   key: 'viewMode',
-  default: 'dark',
+  default: true,
 });

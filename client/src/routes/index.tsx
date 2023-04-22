@@ -4,7 +4,7 @@ import Test from '../pages/Test';
 const Routes = () => {
   return (
     <ReactRoutes>
-      <Route path="/" element={<Test />} />
+      <Route path="/test" element={<Test />} />
     </ReactRoutes>
   );
 };

@@ -11,7 +11,7 @@ function App() {
   const currentMode = useRecoilValue(modeState);
 
   return (
-    <ThemeProvider theme={currentMode === 'dark' ? defalutTheme : lightTheme}>
+    <ThemeProvider theme={currentMode ? defalutTheme : lightTheme}>
       <BrowserRouter>
         <GlobalStyles />
         <Layout router={<Routes />} />
