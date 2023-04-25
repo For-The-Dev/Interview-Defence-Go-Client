@@ -7,11 +7,11 @@ const GNVSection = styled.nav`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px;
+  height: 60px;
   background-color: #393e4a;
 `;
 
-const GNVbox = styled.div`
+const GNVBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,12 +49,13 @@ export const GNV = () => {
 
   return (
     <GNVSection>
-      <GNVbox>
+      <GNVBox>
         <GNVLeft onClick={moveToMain}>INDeGo</GNVLeft>
         <GNVMid></GNVMid>
-        <GNVRight>UserSection</GNVRight>
-        <UserInfomationDropBox />
-      </GNVbox>
+        <GNVRight>
+          <UserInfomationDropBox />
+        </GNVRight>
+      </GNVBox>
     </GNVSection>
   );
 };
