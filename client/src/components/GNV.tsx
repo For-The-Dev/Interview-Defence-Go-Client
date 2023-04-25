@@ -3,41 +3,21 @@ import styled from 'styled-components';
 import { UserInfomationDropBox } from './UserInfomationDropBox';
 
 const GNVSection = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: #393e4a;
 `;
 
-const GNVBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 1024px;
+const GNVLogo = styled.div`
+  position: fixed;
+  top: 5px;
+  left: 55px;
+  font-size: 30px;
+  font-weight: bold;
 
   @media screen and (max-width: 480px) {
-    justify-content: space-between;
-    width: 50%;
-    min-width: 320px;
+    left: 20px;
   }
-`;
-
-const GNVLeft = styled.div`
-  flex: 1;
-`;
-
-const GNVMid = styled.div`
-  display: flex;
-  justify-content: center;
-  flex: 3;
-`;
-
-const GNVRight = styled.div`
-  display: flex;
-  justify-content: right;
-  flex: 1;
 `;
 
 export const GNV = () => {
@@ -49,13 +29,8 @@ export const GNV = () => {
 
   return (
     <GNVSection>
-      <GNVBox>
-        <GNVLeft onClick={moveToMain}>INDeGo</GNVLeft>
-        <GNVMid></GNVMid>
-        <GNVRight>
-          <UserInfomationDropBox />
-        </GNVRight>
-      </GNVBox>
+      <GNVLogo onClick={moveToMain}>INDeGo</GNVLogo>
+      <UserInfomationDropBox />
     </GNVSection>
   );
 };

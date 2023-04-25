@@ -7,14 +7,19 @@ import { useState } from 'react';
 
 const DropBox = styled.section`
   position: fixed;
-  top: 7px;
-  right: 50px;
+  top: 5px;
+  right: 55px;
+  z-index: 99;
+
+  @media screen and (max-width: 480px) {
+    right: 20px;
+  }
 `;
 
 const Profile = styled.div`
   position: relative;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -32,7 +37,7 @@ const Image = styled.img`
 
 const Menu = styled.div<{ visible: boolean }>`
   position: absolute;
-  top: ${(props) => (props.visible ? '80px' : '120px')};
+  top: ${(props) => (props.visible ? '70px' : '120px')};
   right: -10px;
   padding: 10px 20px;
   background: #fff;
