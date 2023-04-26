@@ -43,6 +43,7 @@ const SelectBox = styled.div`
   border-radius: 20px;
   background-color: ${(props) => props.theme.color.qaAnswerBg};
 `;
+
 const MainBottom = styled.div`
   margin-top: 20px;
   display: flex;
