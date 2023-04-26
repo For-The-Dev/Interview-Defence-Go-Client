@@ -93,6 +93,7 @@ const SearchComponent = () => {
         <SearchInput
           {...register('stack', { required: '스택을 입력해주세요' })}
           placeholder="보유 기술을 검색해주세요."
+          autoComplete="off"
         />
         <SearchButton>
           <SearchImg src={searchIcon} />
