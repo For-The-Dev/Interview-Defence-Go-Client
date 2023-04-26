@@ -17,7 +17,7 @@ const darkColor = {
   qaAnswerBg: '#212832',
   searchBg: '#ffffff',
   popupBg: 'rgba(255,255,255,0.85)',
-  btnBg: '0075FF',
+  btnBg: '#0075FF',
 };
 
 export type ColorType = typeof darkColor;
@@ -33,7 +33,7 @@ export const lightColor: ColorType = {
   qaAnswerBg: '#212832',
   searchBg: '#ffffff',
   popupBg: 'rgba(255,255,255,0.85)',
-  btnBg: '0075FF',
+  btnBg: '#0075FF',
 };
 
 export const defalutTheme: DefaultTheme = {
