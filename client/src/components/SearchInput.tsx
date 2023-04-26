@@ -1,20 +1,36 @@
+import { useForm } from 'react-hook-form';
+import { useSetRecoilState } from 'recoil';
+
 import styled from 'styled-components';
+import { stackList } from '../data/stacks';
 
 import searchIcon from '../image/loupe.png';
+import { stackState } from '../states/stack';
 
-const SearchBox = styled.div`
+const SearchBox = styled.form`
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 500px) {
+    width: 200px;
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 800px) {
+    width: 300px;
+  }
+
+  @media screen and (min-width: 801px) {
+    width: 500px;
+  }
 `;
 
 const SearchInput = styled.input`
-  min-width: 300px;
-  width: 50%;
+  width: 500px;
   height: 30px;
   text-align: center;
 `;
 
-const SearchButton = styled.div`
+const SearchButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,14 +44,66 @@ const SearchImg = styled.img`
   height: 20px;
 `;
 
+const SuggestionKeywords = styled.ul`
+  position: absolute;
+  top: 100px;
+  background-color: white;
+  color: black;
+
+  @media screen and (max-width: 500px) {
+    width: 185px;
+    margin-right: 20px;
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 800px) {
+    width: 280px;
+    margin-right: 20px;
+  }
+
+  @media screen and (min-width: 801px) {
+    width: 470px;
+    margin-right: 30px;
+  }
+`;
+
+const SuggestionKeyword = styled.li`
+  margin: 10px 0 10px 10px;
+  cursor: pointer;
+
+  :hover {
+    color: red;
+  }
+`;
+
+interface stackForm {
+  stack: string;
+}
+
 const SearchComponent = () => {
+  const { register, handleSubmit, setValue } = useForm<stackForm>();
+  const setStack = useSetRecoilState(stackState);
+  const handleValid = (stack: stackForm) => {
+    setStack((oldStacks) => [stack, ...oldStacks]);
+    setValue('stack', '');
+  };
+
   return (
-    <SearchBox>
-      <SearchInput type={'text'} placeholder="보유 기술을 검색해주세요." />
-      <SearchButton>
-        <SearchImg src={searchIcon} />
-      </SearchButton>
-    </SearchBox>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <SearchBox onSubmit={handleSubmit(handleValid)}>
+        <SearchInput
+          {...register('stack', { required: '스택을 입력해주세요' })}
+          placeholder="보유 기술을 검색해주세요."
+        />
+        <SearchButton>
+          <SearchImg src={searchIcon} />
+        </SearchButton>
+      </SearchBox>
+      <SuggestionKeywords>
+        {stackList.map((el) => (
+          <SuggestionKeyword key={el}>{el}</SuggestionKeyword>
+        ))}
+      </SuggestionKeywords>
+    </div>
   );
 };
 

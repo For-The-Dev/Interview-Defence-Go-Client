@@ -10,10 +10,11 @@ const GNVSection = styled.nav`
 
 const GNVLogo = styled.div`
   position: fixed;
-  top: 5px;
+  top: 7px;
   left: 55px;
   font-size: 30px;
   font-weight: bold;
+  cursor: pointer;
 
   @media screen and (max-width: 480px) {
     left: 20px;

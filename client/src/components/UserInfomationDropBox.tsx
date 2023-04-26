@@ -39,7 +39,7 @@ const Menu = styled.div<{ visible: boolean }>`
   position: absolute;
   top: ${(props) => (props.visible ? '70px' : '120px')};
   right: -10px;
-  padding: 10px 20px;
+  padding: 5px 20px;
   background: #fff;
   width: 200px;
   box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -78,7 +78,6 @@ const MenuTitleSub = styled.span`
 
 const MenuListUl = styled.ul`
   list-style: none;
-  padding: 10px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   direction: flex;
   align-items: center;

@@ -1,5 +1,9 @@
+import { useRecoilValue } from 'recoil';
+
 import styled from 'styled-components';
+
 import SearchComponent from '../components/SearchInput';
+import { stackState } from '../states/stack';
 
 const MainContainer = styled.section`
   width: 60vw;
@@ -14,13 +18,9 @@ const MainLogo = styled.div`
   font-weight: bold;
 `;
 
-const MainSearch = styled.div`
-  width: 100%;
-`;
-
 const MainText = styled.div`
   margin: 40px 0 20px 0;
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 const MainRecommend = styled.div`
@@ -36,6 +36,7 @@ const MainSelect = styled.div`
 `;
 
 const SelectBox = styled.div`
+  display: flex;
   width: 100%;
   min-height: 200px;
   border-radius: 20px;
@@ -54,26 +55,31 @@ const MainButton = styled.button`
   border: 1px solid black;
   border-radius: 20px;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 `;
 
 const Main = () => {
+  const stack = useRecoilValue(stackState);
+  console.log(stack);
+
   return (
     <MainContainer>
       <MainLogo>
         <h2>INDeGo</h2>
       </MainLogo>
-      <MainSearch>
-        <SearchComponent />
-      </MainSearch>
+      <SearchComponent />
       <MainText>추천 스택</MainText>
       <MainRecommend>
         <div>react html 박스 넣기</div>
       </MainRecommend>
       <MainText>현재 선택한 스택</MainText>
       <MainSelect>
-        <SelectBox>선택한 박스넣기</SelectBox>
+        <SelectBox>
+          {stack.map((el) => (
+            <div key={el.stack}>{el.stack}</div>
+          ))}
+        </SelectBox>
       </MainSelect>
       <MainBottom>
         <MainButton>검색</MainButton>
