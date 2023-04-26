@@ -1,3 +1,4 @@
+import uuid from 'react-uuid';
 import { useRecoilValue } from 'recoil';
 
 import styled from 'styled-components';
@@ -61,7 +62,6 @@ const MainButton = styled.button`
 
 const Main = () => {
   const stack = useRecoilValue(stackState);
-  console.log(stack);
 
   return (
     <MainContainer>
@@ -77,7 +77,7 @@ const Main = () => {
       <MainSelect>
         <SelectBox>
           {stack.map((el) => (
-            <div key={el.stack}>{el.stack}</div>
+            <div key={uuid()}>{el.stack}</div>
           ))}
         </SelectBox>
       </MainSelect>

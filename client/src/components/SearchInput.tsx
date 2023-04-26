@@ -27,7 +27,7 @@ const SearchBox = styled.form`
 const SearchInput = styled.input`
   width: 500px;
   height: 30px;
-  text-align: center;
+  text-indent: 5px;
 `;
 
 const SearchButton = styled.button`
@@ -82,9 +82,15 @@ interface stackForm {
 const SearchComponent = () => {
   const { register, handleSubmit, setValue } = useForm<stackForm>();
   const setStack = useSetRecoilState(stackState);
+
   const handleValid = (stack: stackForm) => {
-    setStack((oldStacks) => [stack, ...oldStacks]);
+    setStack((oldStacks) => [...oldStacks, stack]);
     setValue('stack', '');
+  };
+
+  const keywordSelect = (event: React.MouseEvent<HTMLLIElement>) => {
+    const stack: stackForm = { stack: event.currentTarget.textContent || '' };
+    setStack((oldStacks) => [...oldStacks, stack]);
   };
 
   return (
@@ -100,8 +106,10 @@ const SearchComponent = () => {
         </SearchButton>
       </SearchBox>
       <SuggestionKeywords>
-        {stackList.map((el) => (
-          <SuggestionKeyword key={el}>{el}</SuggestionKeyword>
+        {stackList.map((el, index) => (
+          <SuggestionKeyword onClick={keywordSelect} key={index} value={el}>
+            {el}
+          </SuggestionKeyword>
         ))}
       </SuggestionKeywords>
     </div>
