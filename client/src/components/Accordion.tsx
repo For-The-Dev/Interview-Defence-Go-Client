@@ -3,7 +3,17 @@ import styled from 'styled-components';
 import arrowIcon from '../image/arrow.png';
 
 const AccodionArea = styled.section`
-  min-width: 800px;
+  @media screen and (max-width: 500px) {
+    width: 330px;
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 800px) {
+    width: 500px;
+  }
+
+  @media screen and (min-width: 801px) {
+    width: 800px;
+  }
 `;
 
 const ContentBox = styled.div`
@@ -39,7 +49,6 @@ const Content = styled.div<{ active: boolean }>`
   flex-direction: column;
   position: relative;
   background-color: ${(props) => props.theme.color.qaAnswerBg};
-  height: 0;
   overflow: hidden;
   transition: 0.5s;
   overflow-y: auto;
@@ -71,7 +80,6 @@ export const Accordion = () => {
 
   const handleChecked = () => {
     setChecked(!checked);
-    console.log(checked);
   };
 
   return (
