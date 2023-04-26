@@ -1,3 +1,5 @@
-const rowStackList = ['React', 'JavaScript', 'TypeScript'];
+import { sortByASC } from 'hangul-util';
 
-export const stackList = rowStackList.sort();
+const rowStackList = ['HTML', 'React', 'JavaScript', 'TypeScript', 'CSS', '리액트', 'ReactQuery'];
+
+export const stackList = sortByASC(rowStackList);

@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import { useSetRecoilState } from 'recoil';
+import { stackState } from '../states/stack';
 
 import styled from 'styled-components';
+
 import { stackList } from '../data/stacks';
 
 import searchIcon from '../image/loupe.png';
-import { stackState } from '../states/stack';
 
 const SearchBox = styled.form`
   display: flex;
@@ -44,7 +47,8 @@ const SearchImg = styled.img`
   height: 20px;
 `;
 
-const SuggestionKeywords = styled.ul`
+const SuggestionKeywords = styled.ul<{ visible: boolean }>`
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   position: absolute;
   top: 100px;
   background-color: white;
@@ -80,17 +84,26 @@ interface stackForm {
 }
 
 const SearchComponent = () => {
+  // 검색 인풋 관련
   const { register, handleSubmit, setValue } = useForm<stackForm>();
   const setStack = useSetRecoilState(stackState);
 
   const handleValid = (stack: stackForm) => {
     setStack((oldStacks) => [...oldStacks, stack]);
     setValue('stack', '');
+    setOn(false);
   };
 
+  // 자동 완성 관련
+  const [on, setOn] = useState(false);
   const keywordSelect = (event: React.MouseEvent<HTMLLIElement>) => {
     const stack: stackForm = { stack: event.currentTarget.textContent || '' };
     setStack((oldStacks) => [...oldStacks, stack]);
+    setOn(false);
+  };
+
+  const handleFocus = () => {
+    setOn(true);
   };
 
   return (
@@ -100,12 +113,13 @@ const SearchComponent = () => {
           {...register('stack', { required: '스택을 입력해주세요' })}
           placeholder="보유 기술을 검색해주세요."
           autoComplete="off"
+          onFocus={handleFocus}
         />
         <SearchButton>
           <SearchImg src={searchIcon} />
         </SearchButton>
       </SearchBox>
-      <SuggestionKeywords>
+      <SuggestionKeywords visible={on}>
         {stackList.map((el, index) => (
           <SuggestionKeyword onClick={keywordSelect} key={index} value={el}>
             {el}
