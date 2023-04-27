@@ -4,7 +4,7 @@ import githubLogo from '../../asset/images/github-mark-white.png';
 export type BtnType = 'main' | 'sub' | 'login';
 
 export interface BtnStyledProps {
-  btnType: BtnType;
+  btnType?: BtnType;
   width?: CSSProperties['width'];
   height?: CSSProperties['height'];
   fontSize?: CSSProperties['fontSize'];
@@ -14,7 +14,7 @@ export interface ButtonProps extends BtnStyledProps {
   value: string;
 }
 
-const Button = ({ onClick, value, btnType, ...cssProPerty }: ButtonProps) => {
+const Button = ({ onClick, value, btnType = 'main', ...cssProPerty }: ButtonProps) => {
   return (
     <S.Button onClick={onClick} btnType={btnType} {...cssProPerty}>
       {btnType === 'login' && <img src={githubLogo} />}
