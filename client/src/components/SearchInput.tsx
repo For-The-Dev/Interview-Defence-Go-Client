@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { stackList } from '../data/stacks';
 
-import searchIcon from '../image/loupe.png';
+import searchIcon from '../asset/images/loupe.png';
 
 const SearchBox = styled.form`
   display: flex;
