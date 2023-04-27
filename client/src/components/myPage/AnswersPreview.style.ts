@@ -7,6 +7,7 @@ const Container = styled.div`
   min-height: 310px;
   margin-top: 10px;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   font-weight: bold;
   gap: 10px;
@@ -14,6 +15,7 @@ const Container = styled.div`
 
 const QuestionContainer = styled.section`
   max-height: 90%;
+  min-height: 70px;
   ${({ theme }) => css`
     display: flex;
     flex-direction: column;
@@ -25,6 +27,7 @@ const QuestionContainer = styled.section`
       height: 100%;
       overflow: auto;
       border-radius: 10px;
+
       > article {
         border-bottom: solid 0.5px ${theme.color.subFontColor};
       }
@@ -32,9 +35,13 @@ const QuestionContainer = styled.section`
       > article:last-child {
         border-bottom: none;
       }
+      > .alertNoData {
+        min-height: 70px;
+        text-align: center;
+        line-height: 70px;
+      }
     }
   `}
 `;
 
-const PagenationBtn = styled.div``;
-export { Container, QuestionContainer, PagenationBtn };
+export { Container, QuestionContainer };
