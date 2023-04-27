@@ -13,6 +13,7 @@
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
+    "dayjs": "^1.11.7",
     "hangul-util": "^0.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
