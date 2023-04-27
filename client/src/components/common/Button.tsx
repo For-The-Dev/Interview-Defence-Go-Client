@@ -1,7 +1,7 @@
 import { CSSProperties } from 'styled-components';
 import * as S from './Button.style';
 import githubLogo from '../../asset/images/github-mark-white.png';
-export type BtnType = 'main' | 'sub' | 'login';
+export type BtnType = 'MAIN' | 'SUB' | 'LOGIN';
 
 export interface BtnStyledProps {
   btnType?: BtnType;
@@ -14,10 +14,10 @@ export interface ButtonProps extends BtnStyledProps {
   value: string;
 }
 
-const Button = ({ onClick, value, btnType = 'main', ...cssProPerty }: ButtonProps) => {
+const Button = ({ onClick, value, btnType = 'MAIN', ...cssProPerty }: ButtonProps) => {
   return (
     <S.Button onClick={onClick} btnType={btnType} {...cssProPerty}>
-      {btnType === 'login' && <img src={githubLogo} />}
+      {btnType === 'LOGIN' && <img src={githubLogo} />}
       {value}
     </S.Button>
   );

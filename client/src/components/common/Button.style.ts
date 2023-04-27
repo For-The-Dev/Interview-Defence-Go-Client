@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 export const Button = styled.button<BtnStyledProps>`
   ${({ theme, btnType, width, height, fontSize }) => {
     return css`
-      background-color: ${btnType === 'main' ? theme.color.btnBg : theme.color.contentBg};
+      background-color: ${btnType === 'MAIN' ? theme.color.btnBg : theme.color.contentBg};
       width: ${width ? width : '84px'};
       height: ${height ? height : '36px'};
       font-size: ${fontSize ? fontSize : '15px'};
