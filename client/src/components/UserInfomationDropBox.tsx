@@ -37,15 +37,15 @@ const Image = styled.img`
 
 const Menu = styled.div<{ visible: boolean }>`
   position: absolute;
-  top: ${(props) => (props.visible ? '70px' : '120px')};
-  right: -10px;
+  top: ${(props) => (props.visible ? '70px' : '100px')};
+  right: -15px;
   padding: 5px 20px;
   background: #fff;
   width: 200px;
   box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   transition: 0.5s;
-  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  display: ${(props) => (props.visible ? 'block' : 'none')};
   opacity: ${(props) => (props.visible ? 1 : 0)};
 
   ::before {

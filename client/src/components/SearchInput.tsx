@@ -48,11 +48,12 @@ const SearchImg = styled.img`
 `;
 
 const SuggestionKeywords = styled.ul<{ visible: boolean }>`
-  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  display: ${(props) => (props.visible ? 'block' : 'none')};
   position: absolute;
   top: 100px;
   background-color: white;
   color: black;
+  border-radius: 0 0 10px 10px;
 
   @media screen and (max-width: 500px) {
     width: 185px;
