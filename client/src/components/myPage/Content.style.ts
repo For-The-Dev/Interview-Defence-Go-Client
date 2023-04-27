@@ -10,7 +10,6 @@ const QuestionWrapper = styled.article`
     justify-content: space-between;
     font-size: ${theme.font.xs};
 
-    cursor: pointer;
     > .mainContent {
       font-size: ${theme.font.base};
       display: flex;
@@ -26,6 +25,7 @@ const QuestionWrapper = styled.article`
       > .arrow {
         width: 20px;
         height: 20px;
+        cursor: pointer;
       }
     }
 
