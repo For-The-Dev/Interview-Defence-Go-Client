@@ -15,15 +15,17 @@ interface PreviewProps extends Answer {
 // 카운트랑 다받아야함.
 const AnswersPreview = ({ previews }: { previews: PreviewProps[] }) => {
   const mappingContent = () => {
-    return previews.map((preview) => (
-      <Content
-        key={preview.id}
-        question={preview.text}
-        answer={preview.Answers[0].text}
-        id={preview.id}
-        createdAt={preview.createdAt}
-      />
-    ));
+    return previews.map((preview) => {
+      return (
+        <Content
+          key={preview.id}
+          question={preview.text}
+          answer={preview.Answers[0].text}
+          id={preview.id}
+          createdAt={preview.createdAt}
+        />
+      );
+    });
   };
 
   return (

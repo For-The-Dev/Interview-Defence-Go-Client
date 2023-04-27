@@ -18,12 +18,12 @@ const MyPage = () => {
       {
         id: 86,
         createdAt: '2023-04-23T08:53:17.216Z',
-        text: '리액트에 useState에 대해 설명해주세요',
+        text: '리액트에 useState에 대해 설명해주세요설명해주세요설명해주세요설명해주세요설명해주세요설명해주세요설명해주세요설명해주세요',
         nickName: 'billy5982',
         Answers: [
           {
             id: 77,
-            text: '리액트에 Side-Effect을 방지하기 위해 사용됩니다.근데 잘 모르겠어요2',
+            text: '리액트에 Side-Effect을 방지하기 위해 사용됩니다.근데 잘 모르겠어요2모르겠어요2모르겠어요2모르겠어요2모르겠어요2',
             createdAt: '2023-04-23T08:53:17.236Z',
             nickName: 'billy5982',
           },

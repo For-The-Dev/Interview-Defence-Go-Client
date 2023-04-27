@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import arrowIcon from '../../asset/images/arrow.png';
 
 const QuestionWrapper = styled.article`
   ${({ theme }) => css`
@@ -17,18 +16,25 @@ const QuestionWrapper = styled.article`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      &::after {
-        content: '';
-        display: inline-block;
+
+      > h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      > .arrow {
         width: 20px;
         height: 20px;
-        background-image: url(${arrowIcon});
-        background-size: contain;
       }
     }
 
     > .previewAnswer {
       color: ${theme.color.subFontColor};
+      width: calc(100% - 20px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   `};
 `;
