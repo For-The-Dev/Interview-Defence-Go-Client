@@ -7,9 +7,10 @@ interface ContentProps {
   question: string;
   id: number;
   answer: string;
+  changeModalState: (id: number) => void;
 }
 
-const Content = ({ createdAt, question, answer, id }: ContentProps) => {
+const Content = ({ createdAt, question, answer, id, changeModalState }: ContentProps) => {
   const editQuestionDate = dayjs(createdAt).format('YYYY-MM-DD');
 
   return (
@@ -17,13 +18,7 @@ const Content = ({ createdAt, question, answer, id }: ContentProps) => {
       <span>{editQuestionDate}</span>
       <div className="mainContent">
         <h3>{question}</h3>
-        <img
-          src={arrowIcon}
-          className="arrow"
-          onClick={() => {
-            console.log(`모달 이벤트 ${id}`);
-          }}
-        />
+        <img src={arrowIcon} className="arrow" onClick={() => changeModalState(id)} />
       </div>
       <span className="previewAnswer">{answer}</span>
     </S.QuestionWrapper>

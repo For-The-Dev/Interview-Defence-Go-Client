@@ -14,7 +14,7 @@ interface PreviewsType extends Answer {
   Answers: Answer[];
 }
 
-interface PageInfoProps {
+interface PageInfoType {
   limit: number;
   totalCount: number;
 }
@@ -154,13 +154,17 @@ const { data, pageInfo: pageData } = {
   },
 };
 
+interface AnswerPreviewProps {
+  changeModalState: (id: number) => void;
+}
+
 // 데이터를 여기서 받는 거 검토 할 것. userInfo랑 따로 데이터를 받는 구조이기 때문, 만약 로그인 시 유저 정보를 리코일에 저장한다면 해볼만 함.
-const AnswersPreview = () => {
+const AnswersPreview = ({ changeModalState }: AnswerPreviewProps) => {
   // 데이터 랜더링 함수 통신 성공시
 
   const [previews, setPreview] = useState<PreviewsType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageInfo, setPageInfo] = useState<PageInfoProps>({ limit: 0, totalCount: 0 });
+  const [pageInfo, setPageInfo] = useState<PageInfoType>({ limit: 0, totalCount: 0 });
 
   useEffect(() => {
     // 통신데이터가 들어가야함.
@@ -183,6 +187,7 @@ const AnswersPreview = () => {
           answer={preview.Answers[0].text}
           id={preview.id}
           createdAt={preview.createdAt}
+          changeModalState={changeModalState}
         />
       ));
     } else {
