@@ -20,7 +20,6 @@ const MainContainer = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: scroll;
-  gap: 2rem;
 `;
 
 const PageContainer = styled.div`
@@ -29,12 +28,12 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  padding: 0 20px 20px 20px;
+  height: 100%;
   @media screen and (max-width: 480px) {
     width: 100%;
     min-width: 350px;
     min-height: 98px;
-    padding: 0 0.5rem;
   }
 `;
 
