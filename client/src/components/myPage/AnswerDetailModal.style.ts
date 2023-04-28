@@ -60,7 +60,7 @@ const Title = styled.h3`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  right: 50px;
-  bottom: 40px;
+  right: 20px;
+  bottom: 20px;
 `;
 export { ModalContainer, ContentWrapper, Title, ButtonWrapper };
