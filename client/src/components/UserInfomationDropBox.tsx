@@ -1,6 +1,6 @@
-import userIcon from '../image/userIcon.png';
-import logoutIcon from '../image/logoutIcon.png';
-import themeIcon from '../image/themeIcon.png';
+import userIcon from '../asset/images/userIcon.png';
+import logoutIcon from '../asset/images/logoutIcon.png';
+import themeIcon from '../asset/images/themeIcon.png';
 
 import styled from 'styled-components';
 import { useState } from 'react';

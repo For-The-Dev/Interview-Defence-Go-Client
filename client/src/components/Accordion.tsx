@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import arrowIcon from '../image/arrow.png';
+import arrowIcon from '../asset/images/arrow.png';
 
 const AccodionArea = styled.section`
   @media screen and (max-width: 500px) {
