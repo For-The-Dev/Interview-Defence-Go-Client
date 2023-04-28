@@ -10,6 +10,7 @@ const ModalContainer = styled.div`
   z-index: 99;
   padding: 20px;
   background-color: ${({ theme }) => theme.color.popupBg};
+  overflow: auto;
 `;
 
 const modalShow = keyframes`
@@ -24,9 +25,13 @@ const modalShow = keyframes`
 `;
 
 const ContentWrapper = styled.section`
+  position: relative;
+  min-width: 280px;
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: auto;
   background-color: ${({ theme }) => theme.color.contentBg};
   display: flex;
   flex-direction: column;
@@ -38,7 +43,6 @@ const ContentWrapper = styled.section`
 
 const Title = styled.h3`
   margin-bottom: 10px;
-  width: 100%;
   width: 100%;
   font-size: ${({ theme }) => theme.font.xl};
   font-weight: 500;
