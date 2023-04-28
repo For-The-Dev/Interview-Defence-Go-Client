@@ -103,18 +103,22 @@ const SearchComponent = () => {
     setOn(false);
   };
 
-  const handleFocus = () => {
+  const handleFocusIn = () => {
     setOn(true);
   };
 
+  const handleFocusOut = () => {
+    setOn(false);
+  };
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }} onBlur={handleFocusOut}>
       <SearchBox onSubmit={handleSubmit(handleValid)}>
         <SearchInput
           {...register('stack', { required: '스택을 입력해주세요' })}
           placeholder="보유 기술을 검색해주세요."
           autoComplete="off"
-          onFocus={handleFocus}
+          onFocus={handleFocusIn}
         />
         <SearchButton>
           <SearchImg src={searchIcon} />
@@ -122,7 +126,7 @@ const SearchComponent = () => {
       </SearchBox>
       <SuggestionKeywords visible={on}>
         {stackList.map((el, index) => (
-          <SuggestionKeyword onClick={keywordSelect} key={index} value={el}>
+          <SuggestionKeyword onMouseDown={keywordSelect} key={index} value={el}>
             {el}
           </SuggestionKeyword>
         ))}

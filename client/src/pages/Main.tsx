@@ -71,9 +71,9 @@ const Main = () => {
       </MainLogo>
       <SearchComponent />
       <MainText>추천 스택</MainText>
-      <MainRecommend>
+      {/* <MainRecommend>
         <div>react html 박스 넣기</div>
-      </MainRecommend>
+      </MainRecommend> */}
       <MainText>현재 선택한 스택</MainText>
       <MainSelect>
         <SelectBox>

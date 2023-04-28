@@ -45,7 +45,7 @@ const Menu = styled.div<{ visible: boolean }>`
   box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   transition: 0.5s;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.visible ? 1 : 0)};
 
   ::before {
