@@ -15,7 +15,7 @@ const QuestionWrapper = styled.article`
       display: flex;
       justify-content: space-between;
       align-items: center;
-
+      line-height: 20px;
       > h3 {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -35,6 +35,7 @@ const QuestionWrapper = styled.article`
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      line-height: 12px;
     }
   `};
 `;

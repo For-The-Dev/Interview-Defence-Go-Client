@@ -30,7 +30,7 @@ const darkColor = {
   contentBg: '#393E4A',
   qaAnswerBg: '#212832',
   searchBg: '#ffffff',
-  popupBg: 'rgba(255,255,255,0.85)',
+  popupBg: 'rgba(0,0,0,0.5)',
   btnBg: '#0075FF',
 };
 
