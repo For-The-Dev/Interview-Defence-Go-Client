@@ -15,6 +15,11 @@ export const Button = styled.button<BtnStyledProps>`
       color: ${theme.color.primaryFontColor};
       border-radius: 30px;
       letter-spacing: 0.5px;
+      &:hover {
+        /* Main일때만 동작 */
+        background-color: ${btnType === 'MAIN' && theme.color.contentBg};
+        transition: 0.3s ease-in;
+      }
       > img {
         width: 20px;
         height: 20px;
