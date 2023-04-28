@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 const Container = styled.section`
   width: 100%;
   max-width: 600px;
+  min-height: 500px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -29,7 +30,8 @@ const QuestionWrapper = styled.div`
 
 const InterviewInput = styled.textarea`
   width: 100%;
-  min-height: 40%;
+  min-height: 300px;
+  height: 50%;
   border-radius: 20px;
   padding: 20px;
   overflow: auto;
