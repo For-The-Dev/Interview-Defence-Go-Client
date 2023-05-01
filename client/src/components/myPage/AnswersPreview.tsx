@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './AnswersPreview.style';
-import Content from './Content';
-import PageNationContainer from './PageNationContainer';
+import Content from './answerPreviewComponent/Content';
+import PageNationContainer from './answerPreviewComponent/PageNationContainer';
 
 interface Answer {
   id: number;

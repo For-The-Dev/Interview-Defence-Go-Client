@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import * as S from './AnswerDetailModal.style';
-import AnswerBox from './AnswerBox';
+import AnswerBox from './modalComponent/AnswerBox';
 import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
 

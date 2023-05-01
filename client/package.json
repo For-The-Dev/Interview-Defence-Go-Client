@@ -14,6 +14,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-js-pagination": "^3.0.4",
     "@types/styled-components": "^5.1.26",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.7",
     "hangul-util": "^0.1.0",
     "react": "^18.2.0",
