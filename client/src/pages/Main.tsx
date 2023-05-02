@@ -2,6 +2,7 @@ import uuid from 'react-uuid';
 import { useRecoilValue } from 'recoil';
 
 import styled from 'styled-components';
+import Button from '../components/common/Button';
 
 import SearchComponent from '../components/SearchInput';
 import { stackState } from '../states/stack';
@@ -50,16 +51,6 @@ const MainBottom = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const MainButton = styled.button`
-  width: 130px;
-  height: 60px;
-  background-color: #2929ff;
-  border: 1px solid black;
-  border-radius: 20px;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-`;
 
 const Main = () => {
   const stack = useRecoilValue(stackState);
@@ -71,10 +62,7 @@ const Main = () => {
       </MainLogo>
       <SearchComponent />
       <MainText>추천 스택</MainText>
-      JavaScript, TypeScript, React, Redux, Next.js
-      {/* <MainRecommend>
-        <div>react html 박스 넣기</div>
-      </MainRecommend> */}
+      <MainRecommend>JavaScript, TypeScript, React, Redux, Next.js</MainRecommend>
       <MainText>현재 선택한 스택</MainText>
       <MainSelect>
         <SelectBox>
@@ -84,7 +72,13 @@ const Main = () => {
         </SelectBox>
       </MainSelect>
       <MainBottom>
-        <MainButton>검색</MainButton>
+        <Button
+          width={'130px'}
+          height={'60px'}
+          fontSize={'18px'}
+          onClick={() => console.log('h')}
+          value="검색"
+        ></Button>
       </MainBottom>
     </MainContainer>
   );
