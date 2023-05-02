@@ -1,6 +1,6 @@
 import * as S from './Content.style';
 import dayjs from 'dayjs';
-import arrowIcon from '../../asset/images/arrow.png';
+import arrowIcon from '../../../asset/images/arrow.png';
 
 interface ContentProps {
   createdAt: string;
