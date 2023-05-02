@@ -24,13 +24,9 @@ const GNVLogo = styled.div`
 export const GNV = () => {
   const navigate = useNavigate();
 
-  const moveToMain = () => {
-    navigate('/');
-  };
-
   return (
     <GNVSection>
-      <GNVLogo onClick={moveToMain}>INDeGo</GNVLogo>
+      <GNVLogo onClick={() => navigate('/')}>INDeGo</GNVLogo>
       <UserInfomationDropBox />
     </GNVSection>
   );

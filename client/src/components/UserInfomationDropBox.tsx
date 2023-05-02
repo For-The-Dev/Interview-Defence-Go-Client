@@ -91,7 +91,7 @@ const MenuListImg = styled.img`
   transition: 0.5s;
 `;
 
-const MenuListText = styled.a`
+const MenuListText = styled.div`
   display: inline-block;
   text-decoration: none;
   color: #555;
@@ -106,6 +106,7 @@ const MenuListLi = styled.li`
   direction: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   &:hover ${MenuListImg} {
     opacity: 1;
@@ -133,15 +134,15 @@ export const UserInfomationDropBox = () => {
         <MenuListUl>
           <MenuListLi>
             <MenuListImg src={userIcon} />
-            <MenuListText href="#">My Page</MenuListText>
+            <MenuListText>My Page</MenuListText>
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={themeIcon} />
-            <MenuListText href="#">Mode</MenuListText>
+            <MenuListText>Mode</MenuListText>
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={logoutIcon} />
-            <MenuListText href="#">Logout</MenuListText>
+            <MenuListText>Logout</MenuListText>
           </MenuListLi>
         </MenuListUl>
       </Menu>
