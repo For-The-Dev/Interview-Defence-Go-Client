@@ -4,6 +4,8 @@ import themeIcon from '../asset/images/themeIcon.png';
 
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { modeState } from '../states';
 
 const DropBox = styled.section`
   position: fixed;
@@ -119,6 +121,10 @@ const MenuListLi = styled.li`
 
 export const UserInfomationDropBox = () => {
   const [dropboxOn, setdropboxOn] = useState(false);
+  const [mode, setMode] = useRecoilState(modeState);
+  const modeHandler = () => {
+    setMode(!mode);
+  };
 
   return (
     <DropBox>
@@ -138,7 +144,7 @@ export const UserInfomationDropBox = () => {
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={themeIcon} />
-            <MenuListText>Mode</MenuListText>
+            <MenuListText onClick={modeHandler}>Mode</MenuListText>
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={logoutIcon} />
