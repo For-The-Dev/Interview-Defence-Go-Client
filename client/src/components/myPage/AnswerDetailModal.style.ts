@@ -26,7 +26,7 @@ const modalShow = keyframes`
 const ContentWrapper = styled.section`
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
   background-color: ${({ theme }) => theme.color.contentBg};
   display: flex;
   flex-direction: column;

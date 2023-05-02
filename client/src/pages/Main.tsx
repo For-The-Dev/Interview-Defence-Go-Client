@@ -71,6 +71,7 @@ const Main = () => {
       </MainLogo>
       <SearchComponent />
       <MainText>추천 스택</MainText>
+      JavaScript, TypeScript, React, Redux, Next.js
       {/* <MainRecommend>
         <div>react html 박스 넣기</div>
       </MainRecommend> */}
