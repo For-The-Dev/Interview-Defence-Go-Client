@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { stackState } from '../states/stack';
 
 import styled from 'styled-components';
@@ -87,10 +87,12 @@ interface stackForm {
 const SearchComponent = () => {
   // 검색 인풋 관련
   const { register, handleSubmit, setValue } = useForm<stackForm>();
-  const setStack = useSetRecoilState(stackState);
+  const [stack, setStack] = useRecoilState(stackState);
 
-  const handleValid = (stack: stackForm) => {
-    setStack((oldStacks) => [...oldStacks, stack]);
+  const handleValid = (newStack: stackForm) => {
+    if (!stack.map((el) => el.stack === newStack.stack).includes(true)) {
+      setStack((oldStacks) => [...oldStacks, newStack]);
+    }
     setValue('stack', '');
     setOn(false);
   };
@@ -98,23 +100,29 @@ const SearchComponent = () => {
   // 자동 완성 관련
   const [on, setOn] = useState(false);
   const keywordSelect = (event: React.MouseEvent<HTMLLIElement>) => {
-    const stack: stackForm = { stack: event.currentTarget.textContent || '' };
-    setStack((oldStacks) => [...oldStacks, stack]);
+    const newStack: stackForm = { stack: event.currentTarget.textContent || '' };
+    if (!stack.map((el) => el.stack === newStack.stack).includes(true)) {
+      setStack((oldStacks) => [...oldStacks, newStack]);
+    }
     setOn(false);
   };
 
-  const handleFocus = () => {
+  const handleFocusIn = () => {
     setOn(true);
   };
 
+  const handleFocusOut = () => {
+    setOn(false);
+  };
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }} onBlur={handleFocusOut}>
       <SearchBox onSubmit={handleSubmit(handleValid)}>
         <SearchInput
           {...register('stack', { required: '스택을 입력해주세요' })}
           placeholder="보유 기술을 검색해주세요."
           autoComplete="off"
-          onFocus={handleFocus}
+          onFocus={handleFocusIn}
         />
         <SearchButton>
           <SearchImg src={searchIcon} />
@@ -122,7 +130,7 @@ const SearchComponent = () => {
       </SearchBox>
       <SuggestionKeywords visible={on}>
         {stackList.map((el, index) => (
-          <SuggestionKeyword onClick={keywordSelect} key={index} value={el}>
+          <SuggestionKeyword onMouseDown={keywordSelect} key={index} value={el}>
             {el}
           </SuggestionKeyword>
         ))}

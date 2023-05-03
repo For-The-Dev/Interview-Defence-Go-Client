@@ -1,9 +1,11 @@
 import uuid from 'react-uuid';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import styled from 'styled-components';
+import Button from '../components/common/Button';
 
 import SearchComponent from '../components/SearchInput';
+import { stackList } from '../data/stacks';
 import { stackState } from '../states/stack';
 
 const MainContainer = styled.section`
@@ -25,23 +27,60 @@ const MainText = styled.div`
 `;
 
 const MainRecommend = styled.div`
-  width: 100%;
-  border: 1px solid blue;
+  display: grid;
+  grid-gap: 10px;
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 750px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: 751px) and (max-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (min-width: 901px) and (max-width: 1273px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media screen and (min-width: 1274px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
 `;
 
 const MainSelect = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  background-color: ${(props) => props.theme.color.qaAnswerBg};
+  border-radius: 20px;
 `;
 
 const SelectBox = styled.div`
-  display: flex;
-  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-gap: 20px;
   min-height: 200px;
-  border-radius: 20px;
-  background-color: ${(props) => props.theme.color.qaAnswerBg};
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 750px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: 751px) and (max-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (min-width: 901px) and (max-width: 1273px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media screen and (min-width: 1274px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
 `;
 
 const MainBottom = styled.div`
@@ -50,19 +89,38 @@ const MainBottom = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const MainButton = styled.button`
-  width: 130px;
-  height: 60px;
-  background-color: #2929ff;
-  border: 1px solid black;
+
+const Stack = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 20px;
-  color: white;
-  font-size: 18px;
+  height: 40px;
+  margin: 5px;
+  background-color: ${(props) => props.theme.color.btnBg};
+  font-size: ${(props) => props.theme.font.lg};
   font-weight: bold;
+  cursor: pointer;
 `;
 
+interface stackForm {
+  stack: string;
+}
+
 const Main = () => {
-  const stack = useRecoilValue(stackState);
+  const [stack, setStack] = useRecoilState(stackState);
+
+  const selectStack = (event: React.MouseEvent<HTMLDivElement>) => {
+    const newStack: stackForm = { stack: event.currentTarget.textContent || '' };
+    if (!stack.map((el) => el.stack === newStack.stack).includes(true)) {
+      setStack((oldStacks) => [...oldStacks, newStack]);
+    }
+  };
+
+  const deleteStack = (event: React.MouseEvent<HTMLDivElement>) => {
+    const targetStack: stackForm = { stack: event.currentTarget.textContent || '' };
+    setStack(stack.filter((el) => el.stack !== targetStack.stack));
+  };
 
   return (
     <MainContainer>
@@ -72,18 +130,30 @@ const Main = () => {
       <SearchComponent />
       <MainText>추천 스택</MainText>
       <MainRecommend>
-        <div>react html 박스 넣기</div>
+        {stackList.map((el) => (
+          <Stack key={uuid()} onClick={selectStack}>
+            {el}
+          </Stack>
+        ))}
       </MainRecommend>
       <MainText>현재 선택한 스택</MainText>
       <MainSelect>
         <SelectBox>
           {stack.map((el) => (
-            <div key={uuid()}>{el.stack}</div>
+            <Stack key={uuid()} onClick={deleteStack}>
+              {el.stack}
+            </Stack>
           ))}
         </SelectBox>
       </MainSelect>
       <MainBottom>
-        <MainButton>검색</MainButton>
+        <Button
+          width={'130px'}
+          height={'60px'}
+          fontSize={'18px'}
+          onClick={() => console.log('h')}
+          value="검색"
+        />
       </MainBottom>
     </MainContainer>
   );

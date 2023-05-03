@@ -4,6 +4,8 @@ import themeIcon from '../asset/images/themeIcon.png';
 
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { modeState } from '../states';
 
 const DropBox = styled.section`
   position: fixed;
@@ -45,7 +47,7 @@ const Menu = styled.div<{ visible: boolean }>`
   box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   transition: 0.5s;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.visible ? 1 : 0)};
 
   ::before {
@@ -91,7 +93,7 @@ const MenuListImg = styled.img`
   transition: 0.5s;
 `;
 
-const MenuListText = styled.a`
+const MenuListText = styled.div`
   display: inline-block;
   text-decoration: none;
   color: #555;
@@ -106,6 +108,7 @@ const MenuListLi = styled.li`
   direction: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   &:hover ${MenuListImg} {
     opacity: 1;
@@ -118,6 +121,10 @@ const MenuListLi = styled.li`
 
 export const UserInfomationDropBox = () => {
   const [dropboxOn, setdropboxOn] = useState(false);
+  const [mode, setMode] = useRecoilState(modeState);
+  const modeHandler = () => {
+    setMode(!mode);
+  };
 
   return (
     <DropBox>
@@ -133,15 +140,15 @@ export const UserInfomationDropBox = () => {
         <MenuListUl>
           <MenuListLi>
             <MenuListImg src={userIcon} />
-            <MenuListText href="#">My Page</MenuListText>
+            <MenuListText>My Page</MenuListText>
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={themeIcon} />
-            <MenuListText href="#">Mode</MenuListText>
+            <MenuListText onClick={modeHandler}>Mode</MenuListText>
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={logoutIcon} />
-            <MenuListText href="#">Logout</MenuListText>
+            <MenuListText>Logout</MenuListText>
           </MenuListLi>
         </MenuListUl>
       </Menu>
