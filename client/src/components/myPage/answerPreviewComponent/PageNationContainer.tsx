@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import * as S from './PageNationContainer.style';
-import axios from 'axios';
 import Pagination from 'react-js-pagination';
 
 interface PageInfoProps {

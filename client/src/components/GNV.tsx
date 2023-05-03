@@ -4,7 +4,7 @@ import { UserInfomationDropBox } from './UserInfomationDropBox';
 
 const GNVSection = styled.nav`
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   background-color: #393e4a;
 `;
 
@@ -24,13 +24,9 @@ const GNVLogo = styled.div`
 export const GNV = () => {
   const navigate = useNavigate();
 
-  const moveToMain = () => {
-    navigate('/');
-  };
-
   return (
     <GNVSection>
-      <GNVLogo onClick={moveToMain}>INDeGo</GNVLogo>
+      <GNVLogo onClick={() => navigate('/')}>INDeGo</GNVLogo>
       <UserInfomationDropBox />
     </GNVSection>
   );

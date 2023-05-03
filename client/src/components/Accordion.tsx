@@ -84,8 +84,10 @@ export const Accordion = () => {
 
   return (
     <AccodionArea>
-      <ContentBox onClick={handleChecked}>
-        <Label active={checked}>Q1. 안녕하세요</Label>
+      <ContentBox>
+        <Label active={checked} onClick={handleChecked}>
+          Q1. 안녕하세요
+        </Label>
         <Content active={checked}>
           <MyAnswer>
             <AnswerTitle>{`My Answer`}</AnswerTitle>
