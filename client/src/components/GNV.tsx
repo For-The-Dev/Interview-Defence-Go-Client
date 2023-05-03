@@ -1,11 +1,24 @@
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { loginState } from '../states/login';
 import { UserInfomationDropBox } from './UserInfomationDropBox';
 
 const GNVSection = styled.nav`
   width: 100%;
   min-height: 50px;
   background-color: #393e4a;
+
+  > .noLogin {
+    position: fixed;
+    top: 5px;
+    right: 55px;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50px;
+  }
 `;
 
 const GNVLogo = styled.div`
@@ -23,11 +36,12 @@ const GNVLogo = styled.div`
 
 export const GNV = () => {
   const navigate = useNavigate();
+  const login = useRecoilValue(loginState);
 
   return (
     <GNVSection>
       <GNVLogo onClick={() => navigate('/')}>INDeGo</GNVLogo>
-      <UserInfomationDropBox />
+      {login ? <UserInfomationDropBox /> : <div className="noLogin" />}
     </GNVSection>
   );
 };
