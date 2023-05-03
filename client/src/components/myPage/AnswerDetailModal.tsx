@@ -3,6 +3,8 @@ import * as S from './AnswerDetailModal.style';
 import AnswerBox from './modalComponent/AnswerBox';
 import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
+import useGetDetailAnswer from '../../hooks/useGetDetailAnswer';
+import Loading from '../common/Loading';
 
 interface AnswerDetailModalProps {
   questionId: number;
@@ -20,52 +22,16 @@ interface QaType extends QuestionType {
   Answers: QuestionType[];
 }
 
-const dummy = {
-  text: '리액트에 useState에 대해 설명해주세요',
-  id: 82,
-  nickName: 'billy5982',
-  createdAt: '2023-04-23T08:37:38.790Z',
-  Answers: [
-    {
-      text: '리액트에 Side-Effect을 방지하기 위해 사용됩니다.근데 잘 모르겠어요3',
-      id: 72,
-      createdAt: '2023-04-23T08:37:38.809Z',
-      nickName: 'billy5982',
-    },
-    {
-      text: '리액트에 Side-Effect을 방지하기 위해 사용됩니다.',
-      id: 75,
-      createdAt: '2023-04-23T08:39:41.220Z',
-      nickName: 'billy5982',
-    },
-    {
-      text: '리액트에 Side-Effect을 방지하기 위해 사용됩니다.',
-      id: 76,
-      createdAt: '2023-04-23T08:39:41.220Z',
-      nickName: 'billy5982',
-    },
-    {
-      text: '리액트에 Side-Effect을 방지하기 위해 사용됩니다.',
-      id: 76,
-      createdAt: '2023-04-23T08:39:41.220Z',
-      nickName: 'billy5982',
-    },
-    {
-      text: '리액트에 Side-Effect을 방지하기 위해 사용됩니다.',
-      id: 76,
-      createdAt: '2023-04-23T08:39:41.220Z',
-      nickName: 'billy5982',
-    },
-  ],
-};
 const AnswerDetailModal = ({ questionId, changeModalState }: AnswerDetailModalProps) => {
-  const [detail, setDetail] = useState<QaType | null>(null);
+  const { data: detail } = useGetDetailAnswer(questionId);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
+
   const moveToQuestionId = () => {
     navigate(`/question/${questionId}`);
   };
+
   const handler = (e: MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(e.target as HTMLElement)) {
       changeModalState();
@@ -75,7 +41,6 @@ const AnswerDetailModal = ({ questionId, changeModalState }: AnswerDetailModalPr
   useEffect(() => {
     // 데이터 통신 id를 이용한 요청
     document.addEventListener('mousedown', handler);
-    setDetail(dummy);
     return () => {
       document.removeEventListener('mousedown', handler);
     };
@@ -84,7 +49,7 @@ const AnswerDetailModal = ({ questionId, changeModalState }: AnswerDetailModalPr
   return (
     <S.ModalContainer>
       <S.ContentWrapper ref={modalRef}>
-        {detail && (
+        {detail ? (
           <>
             <S.Title>
               {detail.text}
@@ -96,6 +61,8 @@ const AnswerDetailModal = ({ questionId, changeModalState }: AnswerDetailModalPr
               ))}
             </>
           </>
+        ) : (
+          <Loading height="80%" />
         )}
         <S.ButtonWrapper>
           <Button value={'reply'} onClick={moveToQuestionId} />
