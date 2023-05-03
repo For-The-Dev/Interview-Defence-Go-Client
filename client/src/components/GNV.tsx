@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserInfomationDropBox } from './UserInfomationDropBox';
+import useUser from '../hooks/useUser';
 
 const GNVSection = styled.nav`
   width: 100%;
@@ -23,6 +24,7 @@ const GNVLogo = styled.div`
 
 export const GNV = () => {
   const navigate = useNavigate();
+  const { user } = useUser();
 
   return (
     <GNVSection>
