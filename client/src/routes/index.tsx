@@ -4,6 +4,7 @@ import Result from '../pages/Result';
 import Test from '../pages/Test';
 import MyPage from '../pages/MyPage';
 import Interview from '../pages/Interview';
+import Login from '../pages/Login';
 
 const Routes = () => {
   return (
@@ -13,6 +14,7 @@ const Routes = () => {
       <Route path="/result" element={<Result />} />
       <Route path="/myPage" element={<MyPage />} />
       <Route path="/interview" element={<Interview />} />
+      <Route path="/login" element={<Login />} />
     </ReactRoutes>
   );
 };

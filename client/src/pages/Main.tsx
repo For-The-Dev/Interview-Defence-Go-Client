@@ -122,6 +122,14 @@ const Main = () => {
     setStack(stack.filter((el) => el.stack !== targetStack.stack));
   };
 
+  const moveToSearch = () => {
+    console.log('Search');
+  };
+
+  const moveToLogin = () => {
+    return window.location.assign(`${process.env.REACT_APP_SERVER_URL}/auth/github`);
+  };
+
   return (
     <MainContainer>
       <MainLogo>
@@ -148,11 +156,19 @@ const Main = () => {
       </MainSelect>
       <MainBottom>
         <Button
-          width={'130px'}
+          width={'120px'}
           height={'60px'}
           fontSize={'18px'}
-          onClick={() => console.log('h')}
+          onClick={moveToSearch}
           value="검색"
+        />
+        <Button
+          width={'120px'}
+          height={'60px'}
+          fontSize={'18px'}
+          onClick={moveToLogin}
+          btnType="LOGIN"
+          value="LOGIN"
         />
       </MainBottom>
     </MainContainer>

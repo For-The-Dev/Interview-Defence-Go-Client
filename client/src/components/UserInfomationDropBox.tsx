@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modeState } from '../states';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const DropBox = styled.section`
   position: fixed;
@@ -122,8 +124,24 @@ const MenuListLi = styled.li`
 export const UserInfomationDropBox = () => {
   const [dropboxOn, setdropboxOn] = useState(false);
   const [mode, setMode] = useRecoilState(modeState);
+  const navigate = useNavigate();
+
   const modeHandler = () => {
     setMode(!mode);
+  };
+
+  const logout = async () => {
+    try {
+      await axios.get(`${process.env.REACT_APP_SERVER_URL}/logout`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+      localStorage.removeItem('token');
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -146,7 +164,7 @@ export const UserInfomationDropBox = () => {
             <MenuListImg src={themeIcon} />
             <MenuListText onClick={modeHandler}>Mode</MenuListText>
           </MenuListLi>
-          <MenuListLi>
+          <MenuListLi onClick={logout}>
             <MenuListImg src={logoutIcon} />
             <MenuListText>Logout</MenuListText>
           </MenuListLi>
