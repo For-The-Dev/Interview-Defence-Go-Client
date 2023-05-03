@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modeState } from '../states';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Api from '../apis';
 
 const DropBox = styled.section`
   position: fixed;
@@ -132,11 +132,7 @@ export const UserInfomationDropBox = () => {
 
   const logout = async () => {
     try {
-      await axios.get(`${process.env.REACT_APP_SERVER_URL}/logout`, {
-        headers: {
-          Authorization: localStorage.getItem('token'),
-        },
-      });
+      await Api.get(`/logout`);
       localStorage.removeItem('token');
       navigate('/');
     } catch (error) {
@@ -158,7 +154,13 @@ export const UserInfomationDropBox = () => {
         <MenuListUl>
           <MenuListLi>
             <MenuListImg src={userIcon} />
-            <MenuListText>My Page</MenuListText>
+            <MenuListText
+              onClick={() => {
+                navigate('/myPage');
+              }}
+            >
+              My Page
+            </MenuListText>
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={themeIcon} />
