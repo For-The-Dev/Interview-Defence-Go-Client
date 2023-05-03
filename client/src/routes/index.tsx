@@ -3,6 +3,7 @@ import Main from '../pages/Main';
 import Result from '../pages/Result';
 import Test from '../pages/Test';
 import MyPage from '../pages/MyPage';
+import Interview from '../pages/Interview';
 
 const Routes = () => {
   return (
@@ -11,6 +12,7 @@ const Routes = () => {
       <Route path="/test" element={<Test />} />
       <Route path="/result" element={<Result />} />
       <Route path="/myPage" element={<MyPage />} />
+      <Route path="/interview" element={<Interview />} />
     </ReactRoutes>
   );
 };
