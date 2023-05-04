@@ -3,5 +3,6 @@ const queryKey = {
   userInfo: 'userInfo',
   userQA: 'answerPreview',
   detailQA: 'detailQA',
+  getInterviews: 'getInterviews',
 };
 export default queryKey;

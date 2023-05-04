@@ -12,12 +12,12 @@ interface Questions extends Answers {
   Answers: Answers[];
 }
 
-const getDetailAnswer = async (id: number): Promise<Questions> => {
+const getDetailAnswer = async (id: number | string): Promise<Questions> => {
   const { data }: { data: Questions } = await Api.get(`/user/question/${id}`);
   return data;
 };
 
-const useGetDetailAnswer = (id: number) => {
+const useGetDetailAnswer = (id: number | string) => {
   const { data, isLoading } = useQuery([queryKey.detailQA, id], () => getDetailAnswer(id));
   return { data, isLoading };
 };
