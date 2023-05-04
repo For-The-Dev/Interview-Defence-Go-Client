@@ -17,7 +17,7 @@ const Content = ({ createdAt, question, answer, id, changeModalState }: ContentP
     <S.QuestionWrapper>
       <span>{editQuestionDate}</span>
       <div className="mainContent">
-        <h3>{question}asdfadsfadsfasfadsfadsfadsfadsfdsfadsfadsfadsfas</h3>
+        <h3>{question}</h3>
         <img src={arrowIcon} className="arrow" onClick={() => changeModalState(id)} />
       </div>
       <span className="previewAnswer">{answer}</span>

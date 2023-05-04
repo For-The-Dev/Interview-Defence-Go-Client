@@ -140,7 +140,7 @@ export const UserInfomationDropBox = ({ user }: { user: UserProps }) => {
       localStorage.removeItem('token');
       navigate('/');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
