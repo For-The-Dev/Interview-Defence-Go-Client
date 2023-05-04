@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { loginState } from '../states/login';
 import { UserInfomationDropBox } from './UserInfomationDropBox';
 
 const GNVSection = styled.nav`
@@ -36,12 +34,12 @@ const GNVLogo = styled.div`
 
 export const GNV = () => {
   const navigate = useNavigate();
-  const login = useRecoilValue(loginState);
 
   return (
     <GNVSection>
       <GNVLogo onClick={() => navigate('/')}>INDeGo</GNVLogo>
-      {login ? <UserInfomationDropBox /> : <div className="noLogin" />}
+      <UserInfomationDropBox />
+      <div className="noLogin" />
     </GNVSection>
   );
 };

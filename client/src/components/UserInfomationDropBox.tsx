@@ -4,11 +4,10 @@ import themeIcon from '../asset/images/themeIcon.png';
 
 import styled from 'styled-components';
 import { useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { modeState } from '../states';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { loginState } from '../states/login';
 
 const DropBox = styled.section`
   position: fixed;
@@ -125,7 +124,6 @@ const MenuListLi = styled.li`
 export const UserInfomationDropBox = () => {
   const [dropboxOn, setdropboxOn] = useState(false);
   const [mode, setMode] = useRecoilState(modeState);
-  const setLogin = useSetRecoilState(loginState);
   const navigate = useNavigate();
 
   const modeHandler = () => {
@@ -140,7 +138,6 @@ export const UserInfomationDropBox = () => {
         },
       });
       localStorage.removeItem('token');
-      setLogin(false);
       navigate('/');
     } catch (error) {
       console.log(error);
