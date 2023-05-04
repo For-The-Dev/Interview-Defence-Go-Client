@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 const Login = () => {
   const [params] = useSearchParams();
@@ -11,7 +12,7 @@ const Login = () => {
       localStorage.setItem('token', token);
       navigate('/');
     }
-  }, [token]);
+  }, []);
 
   return <div>Login...</div>;
 };

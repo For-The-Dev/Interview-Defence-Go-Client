@@ -6,6 +6,17 @@ const GNVSection = styled.nav`
   width: 100%;
   min-height: 50px;
   background-color: #393e4a;
+
+  > .noLogin {
+    position: fixed;
+    top: 5px;
+    right: 55px;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50px;
+  }
 `;
 
 const GNVLogo = styled.div`
@@ -28,6 +39,7 @@ export const GNV = () => {
     <GNVSection>
       <GNVLogo onClick={() => navigate('/')}>INDeGo</GNVLogo>
       <UserInfomationDropBox />
+      <div className="noLogin" />
     </GNVSection>
   );
 };
