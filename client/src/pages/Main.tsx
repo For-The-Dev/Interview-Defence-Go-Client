@@ -7,6 +7,7 @@ import Button from '../components/common/Button';
 import SearchComponent from '../components/SearchInput';
 import { stackList } from '../data/stacks';
 import { stackState } from '../states/stack';
+import useUser from '../hooks/useUser';
 
 const MainContainer = styled.section`
   width: 60vw;
@@ -109,6 +110,7 @@ interface stackForm {
 
 const Main = () => {
   const [stack, setStack] = useRecoilState(stackState);
+  const { user } = useUser();
 
   const selectStack = (event: React.MouseEvent<HTMLDivElement>) => {
     const newStack: stackForm = { stack: event.currentTarget.textContent || '' };
@@ -155,21 +157,24 @@ const Main = () => {
         </SelectBox>
       </MainSelect>
       <MainBottom>
-        <Button
-          width={'120px'}
-          height={'60px'}
-          fontSize={'18px'}
-          onClick={moveToSearch}
-          value="검색"
-        />
-        <Button
-          width={'120px'}
-          height={'60px'}
-          fontSize={'18px'}
-          onClick={moveToLogin}
-          btnType="LOGIN"
-          value="LOGIN"
-        />
+        {user ? (
+          <Button
+            width={'120px'}
+            height={'60px'}
+            fontSize={'18px'}
+            onClick={moveToSearch}
+            value="검색"
+          />
+        ) : (
+          <Button
+            width={'120px'}
+            height={'60px'}
+            fontSize={'18px'}
+            onClick={moveToLogin}
+            btnType="LOGIN"
+            value="LOGIN"
+          />
+        )}
       </MainBottom>
     </MainContainer>
   );

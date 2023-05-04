@@ -120,8 +120,12 @@ const MenuListLi = styled.li`
     color: #ff5d94;
   }
 `;
+interface UserProps {
+  nickName: string;
+  avatar_url: string;
+}
 
-export const UserInfomationDropBox = () => {
+export const UserInfomationDropBox = ({ user }: { user: UserProps }) => {
   const [dropboxOn, setdropboxOn] = useState(false);
   const [mode, setMode] = useRecoilState(modeState);
   const navigate = useNavigate();
@@ -143,11 +147,11 @@ export const UserInfomationDropBox = () => {
   return (
     <DropBox>
       <Profile>
-        <Image src={userIcon} onClick={() => setdropboxOn(!dropboxOn)} />
+        <Image src={user.avatar_url} onClick={() => setdropboxOn(!dropboxOn)} />
       </Profile>
       <Menu visible={dropboxOn}>
         <MenuTitle>
-          OnemoreBottlee
+          {user.nickName}
           <br />
           <MenuTitleSub>Frontend Developer</MenuTitleSub>
         </MenuTitle>

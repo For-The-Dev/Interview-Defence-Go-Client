@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserInfomationDropBox } from './UserInfomationDropBox';
 import useUser from '../hooks/useUser';
+import userIcon from '../asset/images/userIcon.png';
 
 const GNVSection = styled.nav`
   width: 100%;
@@ -40,8 +41,7 @@ export const GNV = () => {
   return (
     <GNVSection>
       <GNVLogo onClick={() => navigate('/')}>INDeGo</GNVLogo>
-      <UserInfomationDropBox />
-      <div className="noLogin" />
+      {user ? <UserInfomationDropBox user={user} /> : <img className="noLogin" src={userIcon} />}
     </GNVSection>
   );
 };
