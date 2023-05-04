@@ -123,7 +123,7 @@ const Main = () => {
   };
 
   const moveToSearch = () => {
-    console.log('Search');
+    window.confirm('히히히');
   };
 
   const moveToLogin = () => {
