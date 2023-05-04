@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modeState } from '../states';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Api from '../apis';
 
 const DropBox = styled.section`
   position: fixed;
@@ -120,8 +120,12 @@ const MenuListLi = styled.li`
     color: #ff5d94;
   }
 `;
+interface UserProps {
+  nickName: string;
+  avatar_url: string;
+}
 
-export const UserInfomationDropBox = () => {
+export const UserInfomationDropBox = ({ user }: { user: UserProps }) => {
   const [dropboxOn, setdropboxOn] = useState(false);
   const [mode, setMode] = useRecoilState(modeState);
   const navigate = useNavigate();
@@ -132,33 +136,35 @@ export const UserInfomationDropBox = () => {
 
   const logout = async () => {
     try {
-      await axios.get(`${process.env.REACT_APP_SERVER_URL}/logout`, {
-        headers: {
-          Authorization: localStorage.getItem('token'),
-        },
-      });
+      await Api.get(`/logout`);
       localStorage.removeItem('token');
       navigate('/');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   return (
     <DropBox>
       <Profile>
-        <Image src={userIcon} onClick={() => setdropboxOn(!dropboxOn)} />
+        <Image src={user.avatar_url} onClick={() => setdropboxOn(!dropboxOn)} />
       </Profile>
       <Menu visible={dropboxOn}>
         <MenuTitle>
-          OnemoreBottlee
+          {user.nickName}
           <br />
           <MenuTitleSub>Frontend Developer</MenuTitleSub>
         </MenuTitle>
         <MenuListUl>
           <MenuListLi>
             <MenuListImg src={userIcon} />
-            <MenuListText>My Page</MenuListText>
+            <MenuListText
+              onClick={() => {
+                navigate('/myPage');
+              }}
+            >
+              My Page
+            </MenuListText>
           </MenuListLi>
           <MenuListLi>
             <MenuListImg src={themeIcon} />

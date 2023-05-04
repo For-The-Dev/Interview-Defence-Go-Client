@@ -3,6 +3,7 @@ import Profile from '../components/myPage/Profile';
 import AnswersPreview from '../components/myPage/AnswersPreview';
 import { useState } from 'react';
 import AnswerDetailModal from '../components/myPage/AnswerDetailModal';
+import useUser from '../hooks/useUser';
 
 const PageContainer = styled.div`
   height: 100%;
@@ -17,6 +18,8 @@ const MyPage = () => {
   const [questionId, setQuestionIdId] = useState(0);
   const [modalState, setModalState] = useState(false);
 
+  const { user } = useUser();
+
   const changeModalState = (id?: number) => {
     // id가 전달되면 모달을 세팅, 전달되지 않으면 모달을 close
     if (id) {
@@ -27,14 +30,18 @@ const MyPage = () => {
       setQuestionIdId(0);
     }
   };
+
   return (
     <PageContainer>
-      <Profile
-        avatar_url={'https://avatars.githubusercontent.com/u/104412610?v=4'}
-        nickName={'billy5982'}
-        todayQACnt={10}
-        alldayQACnt={20}
-      />
+      {user && (
+        <Profile
+          avatar_url={user.avatar_url}
+          nickName={user.nickName}
+          todayQACnt={user.todayAnswerCount}
+          alldayQACnt={user.allAnswerCount}
+        />
+      )}
+
       <AnswersPreview changeModalState={changeModalState} />
 
       {modalState && (

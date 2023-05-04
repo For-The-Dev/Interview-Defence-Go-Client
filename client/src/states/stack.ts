@@ -1,10 +1,6 @@
 import { atom } from 'recoil';
 
-export type StackState = {
-  stack: string;
-};
-
-export const stackState = atom<StackState[]>({
+export const stackState = atom<string[]>({
   key: 'stack',
   default: [],
 });

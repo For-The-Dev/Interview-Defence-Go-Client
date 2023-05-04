@@ -1,5 +1,6 @@
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 import Button from '../components/common/Button';
@@ -7,6 +8,7 @@ import Button from '../components/common/Button';
 import SearchComponent from '../components/SearchInput';
 import { stackList } from '../data/stacks';
 import { stackState } from '../states/stack';
+import useUser from '../hooks/useUser';
 
 const MainContainer = styled.section`
   width: 60vw;
@@ -103,27 +105,26 @@ const Stack = styled.div`
   cursor: pointer;
 `;
 
-interface stackForm {
-  stack: string;
-}
-
 const Main = () => {
   const [stack, setStack] = useRecoilState(stackState);
+  const { user } = useUser();
+  const navigate = useNavigate();
 
   const selectStack = (event: React.MouseEvent<HTMLDivElement>) => {
-    const newStack: stackForm = { stack: event.currentTarget.textContent || '' };
-    if (!stack.map((el) => el.stack === newStack.stack).includes(true)) {
+    const newStack = event.currentTarget.textContent;
+
+    if (newStack && !stack.includes(newStack)) {
       setStack((oldStacks) => [...oldStacks, newStack]);
     }
   };
 
   const deleteStack = (event: React.MouseEvent<HTMLDivElement>) => {
-    const targetStack: stackForm = { stack: event.currentTarget.textContent || '' };
-    setStack(stack.filter((el) => el.stack !== targetStack.stack));
+    const targetStack = event.currentTarget.textContent;
+    setStack(stack.filter((el) => el !== targetStack));
   };
 
   const moveToSearch = () => {
-    window.confirm('히히히');
+    navigate(`/interview?stacks=${stack.join(',')}`);
   };
 
   const moveToLogin = () => {
@@ -149,27 +150,30 @@ const Main = () => {
         <SelectBox>
           {stack.map((el) => (
             <Stack key={uuid()} onClick={deleteStack}>
-              {el.stack}
+              {el}
             </Stack>
           ))}
         </SelectBox>
       </MainSelect>
       <MainBottom>
-        <Button
-          width={'120px'}
-          height={'60px'}
-          fontSize={'18px'}
-          onClick={moveToSearch}
-          value="검색"
-        />
-        <Button
-          width={'120px'}
-          height={'60px'}
-          fontSize={'18px'}
-          onClick={moveToLogin}
-          btnType="LOGIN"
-          value="LOGIN"
-        />
+        {user ? (
+          <Button
+            width={'120px'}
+            height={'60px'}
+            fontSize={'18px'}
+            onClick={moveToSearch}
+            value="검색"
+          />
+        ) : (
+          <Button
+            width={'120px'}
+            height={'60px'}
+            fontSize={'18px'}
+            onClick={moveToLogin}
+            btnType="LOGIN"
+            value="LOGIN"
+          />
+        )}
       </MainBottom>
     </MainContainer>
   );

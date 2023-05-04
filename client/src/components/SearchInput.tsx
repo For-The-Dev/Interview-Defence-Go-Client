@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { stackState } from '../states/stack';
 
 import styled from 'styled-components';
@@ -90,8 +90,8 @@ const SearchComponent = () => {
   const [stack, setStack] = useRecoilState(stackState);
 
   const handleValid = (newStack: stackForm) => {
-    if (!stack.map((el) => el.stack === newStack.stack).includes(true)) {
-      setStack((oldStacks) => [...oldStacks, newStack]);
+    if (!stack.includes(newStack.stack)) {
+      setStack((oldStacks) => [...oldStacks, newStack.stack]);
     }
     setValue('stack', '');
     setOn(false);
@@ -101,8 +101,8 @@ const SearchComponent = () => {
   const [on, setOn] = useState(false);
   const keywordSelect = (event: React.MouseEvent<HTMLLIElement>) => {
     const newStack: stackForm = { stack: event.currentTarget.textContent || '' };
-    if (!stack.map((el) => el.stack === newStack.stack).includes(true)) {
-      setStack((oldStacks) => [...oldStacks, newStack]);
+    if (!stack.includes(newStack.stack)) {
+      setStack((oldStacks) => [...oldStacks, newStack.stack]);
     }
     setOn(false);
   };
