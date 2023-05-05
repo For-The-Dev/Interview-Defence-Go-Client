@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 
 const Login = () => {
   const [params] = useSearchParams();

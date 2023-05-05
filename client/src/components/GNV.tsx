@@ -5,15 +5,16 @@ import useUser from '../hooks/useUser';
 import userIcon from '../asset/images/userIcon.png';
 
 const GNVSection = styled.nav`
+  position: fixed;
   width: 100%;
   min-height: 50px;
   background-color: #393e4a;
+  z-index: 99;
 
   > .noLogin {
     position: fixed;
     top: 5px;
     right: 55px;
-    z-index: 99;
     width: 40px;
     height: 40px;
     background-color: white;
@@ -30,7 +31,7 @@ const GNVLogo = styled.div`
   cursor: pointer;
 
   @media screen and (max-width: 480px) {
-    left: 20px;
+    left: 55px;
   }
 `;
 
