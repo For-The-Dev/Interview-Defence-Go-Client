@@ -19,6 +19,7 @@ const GNVSection = styled.nav`
     height: 40px;
     background-color: white;
     border-radius: 50px;
+    cursor: pointer;
   }
 `;
 
@@ -39,10 +40,18 @@ export const GNV = () => {
   const navigate = useNavigate();
   const { user } = useUser();
 
+  const moveToLogin = () => {
+    return window.location.assign(`${process.env.REACT_APP_SERVER_URL}/auth/github`);
+  };
+
   return (
     <GNVSection>
       <GNVLogo onClick={() => navigate('/')}>INDeGo</GNVLogo>
-      {user ? <UserInfomationDropBox user={user} /> : <img className="noLogin" src={userIcon} />}
+      {user ? (
+        <UserInfomationDropBox user={user} />
+      ) : (
+        <img className="noLogin" src={userIcon} onClick={moveToLogin} />
+      )}
     </GNVSection>
   );
 };

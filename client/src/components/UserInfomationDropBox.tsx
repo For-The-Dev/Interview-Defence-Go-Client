@@ -1,4 +1,4 @@
-import userIcon from '../asset/images/userIcon.png';
+import userIcon from '../asset/images/user.png';
 import logoutIcon from '../asset/images/logoutIcon.png';
 import themeIcon from '../asset/images/themeIcon.png';
 

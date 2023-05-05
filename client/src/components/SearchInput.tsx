@@ -13,24 +13,29 @@ import searchIcon from '../asset/images/loupe.png';
 const SearchBox = styled.form`
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 
   @media screen and (max-width: 500px) {
-    width: 200px;
+    min-width: 200px;
   }
 
   @media screen and (min-width: 501px) and (max-width: 800px) {
-    width: 300px;
+    min-width: 300px;
   }
 
   @media screen and (min-width: 801px) {
-    width: 500px;
+    min-width: 500px;
   }
 `;
 
 const SearchInput = styled.input`
-  width: 500px;
+  min-width: 211.5px;
+  width: 90%;
   height: 30px;
   text-indent: 5px;
+  border: 1px black;
+  border-style: none solid none none;
+  border-radius: 0px;
 `;
 
 const SearchButton = styled.button`
@@ -38,7 +43,8 @@ const SearchButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.color.searchBg};
-  width: 30px;
+  min-width: 45.7px;
+  width: 10%;
   border-radius: 0 10px 10px 0px;
 `;
 
@@ -50,24 +56,24 @@ const SearchImg = styled.img`
 const SuggestionKeywords = styled.ul<{ visible: boolean }>`
   display: ${(props) => (props.visible ? 'block' : 'none')};
   position: absolute;
-  top: 100px;
+  top: 161px;
   background-color: white;
   color: black;
   border-radius: 0 0 10px 10px;
 
   @media screen and (max-width: 500px) {
-    width: 185px;
-    margin-right: 20px;
+    min-width: 208px;
+    margin-right: 47px;
   }
 
   @media screen and (min-width: 501px) and (max-width: 800px) {
-    width: 280px;
-    margin-right: 20px;
+    min-width: 252px;
+    margin-right: 46px;
   }
 
   @media screen and (min-width: 801px) {
-    width: 470px;
-    margin-right: 30px;
+    min-width: 448px;
+    margin-right: 50px;
   }
 `;
 

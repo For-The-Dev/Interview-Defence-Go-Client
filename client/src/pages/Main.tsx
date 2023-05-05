@@ -36,11 +36,11 @@ const MainRecommend = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media screen and (min-width: 501px) and (max-width: 750px) {
+  @media screen and (min-width: 501px) and (max-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media screen and (min-width: 751px) and (max-width: 900px) {
+  @media screen and (min-width: 801px) and (max-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
   }
 
@@ -68,11 +68,11 @@ const SelectBox = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media screen and (min-width: 501px) and (max-width: 750px) {
+  @media screen and (min-width: 501px) and (max-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media screen and (min-width: 751px) and (max-width: 900px) {
+  @media screen and (min-width: 801px) and (max-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
   }
 
