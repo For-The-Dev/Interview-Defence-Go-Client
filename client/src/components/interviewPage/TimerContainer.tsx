@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from './TimerContainer.stlye';
-const BASETIME = 15;
+const BASETIME = 180;
 
 interface TimerProps {
   currentQuestion: number;
