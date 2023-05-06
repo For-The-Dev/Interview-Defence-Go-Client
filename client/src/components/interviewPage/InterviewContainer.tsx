@@ -1,12 +1,16 @@
 import { useRef, useState } from 'react';
 import Button from '../common/Button';
 import * as S from './InterviewContainer.style';
-import useSubmitAnswer from '../../hooks/useSubmitAnswer';
+
 import Loading from '../common/Loading';
 import TimerContainer from './TimerContainer';
+import { UseMutateFunction } from '@tanstack/react-query';
+import { AiCheckAnswerType, SubmitData } from '../../hooks/useSubmitAnswer';
 
-interface InterViewData {
+interface InterViewContainerProps {
   data: string[];
+  mutate: UseMutateFunction<AiCheckAnswerType, unknown, SubmitData[], unknown>;
+  mutateLoading: boolean;
 }
 
 interface Answer {
@@ -16,12 +20,11 @@ interface Answer {
 
 const MAX_ANSWER_LENGTH = 300;
 
-const InterviewContainer = ({ data }: InterViewData) => {
+const InterviewContainer = ({ data, mutate, mutateLoading }: InterViewContainerProps) => {
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const [questionIdx, setQuestionIdx] = useState(1);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [typingLength, setTypingLength] = useState(0);
-  const { mutate, isLoading } = useSubmitAnswer();
 
   const totalQuestionCount = data.length;
   const isLastQuestion = questionIdx === totalQuestionCount;
@@ -58,8 +61,8 @@ const InterviewContainer = ({ data }: InterViewData) => {
       mutate(allAnswer);
     }
   };
-  console.log(answers);
-  if (isLoading) {
+
+  if (mutateLoading) {
     return <Loading />;
   }
 
