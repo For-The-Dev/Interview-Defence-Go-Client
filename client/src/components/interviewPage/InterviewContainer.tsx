@@ -3,64 +3,92 @@ import Button from '../common/Button';
 import * as S from './InterviewContainer.style';
 import useSubmitAnswer from '../../hooks/useSubmitAnswer';
 import Loading from '../common/Loading';
+import TimerContainer from './TimerContainer';
 
 interface InterViewData {
   data: string[];
 }
 
-interface answerType {
+interface Answer {
   question: string;
   answer: string;
 }
 
+const MAX_ANSWER_LENGTH = 300;
+
 const InterviewContainer = ({ data }: InterViewData) => {
-  const [questionIdx, setQuestionIdx] = useState(1);
   const ref = useRef<HTMLTextAreaElement | null>(null);
-  const [answer, setAnswer] = useState<answerType[]>([]);
+  const [questionIdx, setQuestionIdx] = useState(1);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [typingLength, setTypingLength] = useState(0);
   const { mutate, isLoading } = useSubmitAnswer();
 
+  const totalQuestionCount = data.length;
+  const isLastQuestion = questionIdx === totalQuestionCount;
+  const isTypingLengthWarning = typingLength + 10 >= MAX_ANSWER_LENGTH;
+  const isTypingLengthOutOfRange = typingLength > MAX_ANSWER_LENGTH;
+
+  const lengthCheck = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTypingLength(e.target.value.length);
+  };
+
+  // 제출 로직 수정. 1차로 버튼에 제한을 줬기 때문에 조건을 제거하고, 만약 타임아웃으로 다음 문제로 넘어가게 된다면
+  // 글자수를 맞추고 넘어갈 수 있도록 수정 -> 서버 용량 문제
   const moveToNextQuestion = () => {
     if (ref.current) {
-      const typing = ref.current.value;
+      const typing = ref.current.value.slice(0, 300);
       setQuestionIdx((prev) => prev + 1);
-      setAnswer((prev) => [...prev, { question: data[questionIdx - 1], answer: typing }]);
+      setTypingLength(0);
+      setAnswers((prev) => [...prev, { question: data[questionIdx - 1], answer: typing }]);
       ref.current.value = '';
     }
   };
 
-  // mutate -> recoil.
-  // recoil -> 클라이언트 데이터로 저장.
-  // react-query -> 서버에서 받은 데이터를 임의 쿼리로 저장.
-  // return -> server, client 잠깐 보고 지나치는 걸로 봐야할 지...
-
   const onSubmitAnswer = () => {
     // mutate 가 이뤄져야함 . 해당 mutate가 이뤄지고 난 후엔 이동
-    const allAnswer = [
-      ...answer,
-      {
-        question: data[questionIdx - 1],
-        answer: ref.current?.value,
-      },
-    ] as answerType[];
-    mutate(allAnswer);
+    if (ref.current) {
+      const allAnswer = [
+        ...answers,
+        {
+          question: data[questionIdx - 1],
+          answer: ref.current.value.slice(0, 300),
+        },
+      ];
+      setTypingLength(0);
+      mutate(allAnswer);
+    }
   };
-
+  console.log(answers);
   if (isLoading) {
     return <Loading />;
   }
 
   return (
     <S.Container>
+      <div style={{ width: '100%', textAlign: 'end' }}>
+        {questionIdx} / {totalQuestionCount}
+      </div>
       <S.QuestionWrapper>
         <h1>Q{questionIdx}</h1>
         <h2>{data[questionIdx - 1]}</h2>
+        <TimerContainer
+          currentQuestion={questionIdx}
+          isLastQuestion={isLastQuestion}
+          moveToNextQuestion={moveToNextQuestion}
+          onSubmitAnswer={onSubmitAnswer}
+        />
       </S.QuestionWrapper>
-      <S.InterviewInput ref={ref} />
-      {questionIdx === data.length ? (
-        <Button value="제출" onClick={onSubmitAnswer} width={'120px'} />
-      ) : (
-        <Button value="다음 문제로" onClick={moveToNextQuestion} width={'120px'} />
-      )}
+      <S.InterviewInput ref={ref} onChange={lengthCheck} />
+      <S.TypingLimitContainer warningSign={isTypingLengthWarning}>
+        {`${typingLength} / ${MAX_ANSWER_LENGTH}`}
+      </S.TypingLimitContainer>
+      <Button
+        value={isLastQuestion ? '제출' : '다음 문제'}
+        onClick={isLastQuestion ? onSubmitAnswer : moveToNextQuestion}
+        disabled={isTypingLengthOutOfRange ? true : false}
+        width={'120px'}
+        height={'50px'}
+      />
     </S.Container>
   );
 };
