@@ -112,6 +112,14 @@ const Main = () => {
     setStack(stack.filter((el) => el !== targetStack));
   };
 
+  const moveToInterview = () => {
+    if (stack.length > 0) {
+      setModal(true);
+    } else {
+      alert('스택을 선택하세요 !!');
+    }
+  };
+
   const moveToLogin = () => {
     return window.location.assign(`${process.env.REACT_APP_SERVER_URL}/auth/github`);
   };
@@ -142,7 +150,7 @@ const Main = () => {
             width={'120px'}
             height={'60px'}
             fontSize={'18px'}
-            onClick={() => setModal(true)}
+            onClick={moveToInterview}
             value="검색"
           />
         ) : (
