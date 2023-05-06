@@ -8,14 +8,21 @@ const getInterView = async (stacks: string): Promise<string[]> => {
   return data;
 };
 
+const ONEMIN = 60000;
+// 3분 * 문제 수 * 여유시간(1분)=> 1000*180*stacks.length +60000
 const useGetInterview = (stacks: string) => {
+  const getStacksCount = stacks.split(',').length;
+  const getQuestionsCount = getStacksCount >= 5 ? getStacksCount : 5;
+
   const { data = [], isLoading } = useQuery(
     [queryKey.getInterviews, stacks],
     () => getInterView(stacks),
     {
       keepPreviousData: true,
+      staleTime: ONEMIN * 3 * getQuestionsCount + ONEMIN,
+      cacheTime: ONEMIN * 3 * getQuestionsCount * 1.5,
     },
-  ); // 인터뷰 쿼리 실행
+  );
   return { data, isLoading };
 };
 
