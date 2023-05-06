@@ -39,7 +39,8 @@ const useSubmitAnswer = (): UseSubmitType => {
     {
       onSuccess: (data) => {
         // userInfo, preview, detailQa
-        queryClient.invalidateQueries([queryKey.userInfo, queryKey.userQAPreview]);
+        queryClient.invalidateQueries([queryKey.userInfo]);
+        queryClient.invalidateQueries([queryKey.userQAPreview]);
         queryClient.removeQueries([queryKey.getInterviews]);
         queryClient.setQueryData([queryKey.answer], data.data);
         navigate('/result');

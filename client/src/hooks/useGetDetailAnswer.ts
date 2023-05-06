@@ -18,7 +18,7 @@ const getDetailAnswer = async (id: number | string): Promise<Questions> => {
 };
 
 const useGetDetailAnswer = (id: number | string) => {
-  const { data, isLoading } = useQuery([queryKey.detailQA, id], () => getDetailAnswer(id));
+  const { data, isLoading } = useQuery([queryKey.detailQA, +id], () => getDetailAnswer(id));
   return { data, isLoading };
 };
 
