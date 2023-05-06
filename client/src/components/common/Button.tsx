@@ -12,11 +12,17 @@ export interface BtnStyledProps {
 export interface ButtonProps extends BtnStyledProps {
   onClick: () => void;
   value: string;
+  disabled?: boolean;
 }
 
-const Button = ({ onClick, value, btnType = 'MAIN', ...cssProPerty }: ButtonProps) => {
+const Button = ({ onClick, value, btnType = 'MAIN', disabled, ...cssProPerty }: ButtonProps) => {
   return (
-    <S.Button onClick={onClick} btnType={btnType} {...cssProPerty}>
+    <S.Button
+      onClick={onClick}
+      btnType={btnType}
+      disabled={disabled ? true : false}
+      {...cssProPerty}
+    >
       {btnType === 'LOGIN' && <img src={githubLogo} />}
       {value}
     </S.Button>

@@ -1,10 +1,9 @@
-import { AxiosResponse } from 'axios';
 import { UseMutateFunction, useMutation, useQueryClient } from '@tanstack/react-query';
 import Api from '../apis';
 import { useNavigate } from 'react-router-dom';
 import queryKey from '../react-query/queryKey';
 
-interface SubmitData {
+export interface SubmitData {
   answer: string;
   question: string;
 }
@@ -15,17 +14,19 @@ interface SuccessData {
   aiAnswer: string;
 }
 
-interface AxiosResType {
+export interface AiCheckAnswerType {
   data: SuccessData[];
 }
 
 interface UseSubmitType {
-  mutate: UseMutateFunction<AxiosResType, unknown, SubmitData[], unknown>;
+  mutate: UseMutateFunction<AiCheckAnswerType, unknown, SubmitData[], unknown>;
   isLoading: boolean;
 }
 
-const submitAnswer = async (submitData: SubmitData[]): Promise<AxiosResType> => {
-  const successData: AxiosResType = await Api.post('/user/editQuestions', { data: submitData });
+const submitAnswer = async (submitData: SubmitData[]): Promise<AiCheckAnswerType> => {
+  const successData: AiCheckAnswerType = await Api.post('/user/editQuestions', {
+    data: submitData,
+  });
   return successData;
 };
 
@@ -38,7 +39,8 @@ const useSubmitAnswer = (): UseSubmitType => {
     {
       onSuccess: (data) => {
         // userInfo, preview, detailQa
-        queryClient.invalidateQueries([queryKey.userInfo, queryKey.userQA]);
+        queryClient.invalidateQueries([queryKey.userInfo]);
+        queryClient.invalidateQueries([queryKey.userQAPreview]);
         queryClient.removeQueries([queryKey.getInterviews]);
         queryClient.setQueryData([queryKey.answer], data.data);
         navigate('/result');
