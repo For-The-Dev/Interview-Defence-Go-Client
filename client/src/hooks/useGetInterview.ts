@@ -9,7 +9,7 @@ const getInterView = async (stacks: string): Promise<string[]> => {
 };
 
 const useGetInterview = (stacks: string) => {
-  const { data, isLoading } = useQuery(
+  const { data = [], isLoading } = useQuery(
     [queryKey.getInterviews, stacks],
     () => getInterView(stacks),
     {
