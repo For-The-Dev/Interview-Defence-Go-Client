@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { GNV } from '../components/GNV';
+import { GNB } from '../components/common/GNB';
 
 interface LayoutProps {
   router: ReactNode;
@@ -9,7 +9,7 @@ interface LayoutProps {
 const Layout = ({ router }: LayoutProps) => {
   return (
     <MainContainer>
-      <GNV />
+      <GNB />
       <PageContainer>{router}</PageContainer>
     </MainContainer>
   );

@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 
-import SearchComponent from '../components/SearchInput';
+import useUser from '../hooks/useUser';
+import SearchComponent from '../components/mainPage/SearchInput';
 import { stackList } from '../data/stacks';
 import { stackState } from '../states/stack';
-import useUser from '../hooks/useUser';
+import Stack from '../components/Stack';
 
 const MainContainer = styled.section`
   width: 60vw;
@@ -92,19 +93,6 @@ const MainBottom = styled.div`
   align-items: center;
 `;
 
-const Stack = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  height: 40px;
-  margin: 5px;
-  background-color: ${(props) => props.theme.color.btnBg};
-  font-size: ${(props) => props.theme.font.lg};
-  font-weight: bold;
-  cursor: pointer;
-`;
-
 const Main = () => {
   const [stack, setStack] = useRecoilState(stackState);
   const { user } = useUser();
@@ -140,18 +128,14 @@ const Main = () => {
       <MainText>추천 스택</MainText>
       <MainRecommend>
         {stackList.map((el) => (
-          <Stack key={uuid()} onClick={selectStack}>
-            {el}
-          </Stack>
+          <Stack key={uuid()} onClick={selectStack} value={el} />
         ))}
       </MainRecommend>
       <MainText>현재 선택한 스택</MainText>
       <MainSelect>
         <SelectBox>
           {stack.map((el) => (
-            <Stack key={uuid()} onClick={deleteStack}>
-              {el}
-            </Stack>
+            <Stack key={uuid()} onClick={deleteStack} value={el} />
           ))}
         </SelectBox>
       </MainSelect>
