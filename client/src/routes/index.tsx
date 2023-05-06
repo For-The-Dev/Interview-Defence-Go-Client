@@ -5,6 +5,7 @@ import Test from '../pages/Test';
 import MyPage from '../pages/MyPage';
 import Interview from '../pages/Interview';
 import Login from '../pages/Login';
+import ReplyInterview from '../pages/ReplyInterview';
 
 const Routes = () => {
   return (
@@ -14,6 +15,7 @@ const Routes = () => {
       <Route path="/result" element={<Result />} />
       <Route path="/myPage" element={<MyPage />} />
       <Route path="/interview" element={<Interview />} />
+      <Route path="/interview/:id" element={<ReplyInterview />} />
       <Route path="/login" element={<Login />} />
     </ReactRoutes>
   );

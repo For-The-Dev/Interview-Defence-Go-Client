@@ -17,13 +17,15 @@ const QuestionWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     font-weight: 500;
     > h1 {
       font-size: ${theme.font.xxl};
     }
     > h2 {
       font-size: ${theme.font.xl};
+      word-break: keep-all;
+      text-align: center;
     }
   `}
 `;
@@ -37,4 +39,22 @@ const InterviewInput = styled.textarea`
   overflow: auto;
 `;
 
-export { Container, QuestionWrapper, InterviewInput };
+const TypingLimitContainer = styled.div<{ warningSign: boolean }>`
+  width: 100%;
+  text-align: end;
+  color: ${({ warningSign }) => warningSign && 'red'};
+  ${({ warningSign }) =>
+    warningSign &&
+    `
+    animation : warning 0.1s alternate;
+    @keyframes warning{
+      from {
+        transform: rotate(1deg);
+      }
+      to {
+        transform: rotate(-1deg);
+      }}
+    `}
+`;
+
+export { Container, QuestionWrapper, InterviewInput, TypingLimitContainer };
