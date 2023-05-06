@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { stackState } from '../states/stack';
+import { stackState } from '../states/mainPage';
 
 const StackComponent = styled.div<{ selected: boolean }>`
   display: flex;

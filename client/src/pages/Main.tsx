@@ -8,8 +8,9 @@ import Button from '../components/common/Button';
 import useUser from '../hooks/useUser';
 import SearchComponent from '../components/mainPage/SearchInput';
 import { stackList } from '../data/stacks';
-import { stackState } from '../states/stack';
+import { modalState, stackState } from '../states/mainPage';
 import Stack from '../components/Stack';
+import { ConfirmModal } from '../components/mainPage/ConfirmModal';
 
 const MainContainer = styled.section`
   width: 60vw;
@@ -95,8 +96,8 @@ const MainBottom = styled.div`
 
 const Main = () => {
   const [stack, setStack] = useRecoilState(stackState);
+  const [modal, setModal] = useRecoilState(modalState);
   const { user } = useUser();
-  const navigate = useNavigate();
 
   const selectStack = (event: React.MouseEvent<HTMLDivElement>) => {
     const newStack = event.currentTarget.textContent;
@@ -109,10 +110,6 @@ const Main = () => {
   const deleteStack = (event: React.MouseEvent<HTMLDivElement>) => {
     const targetStack = event.currentTarget.textContent;
     setStack(stack.filter((el) => el !== targetStack));
-  };
-
-  const moveToSearch = () => {
-    navigate(`/interview?stacks=${stack.join(',')}`);
   };
 
   const moveToLogin = () => {
@@ -145,7 +142,7 @@ const Main = () => {
             width={'120px'}
             height={'60px'}
             fontSize={'18px'}
-            onClick={moveToSearch}
+            onClick={() => setModal(true)}
             value="검색"
           />
         ) : (
@@ -159,6 +156,7 @@ const Main = () => {
           />
         )}
       </MainBottom>
+      {modal && <ConfirmModal />}
     </MainContainer>
   );
 };

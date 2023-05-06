@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
 import { stackList } from '../../data/stacks';
-import { stackState } from '../../states/stack';
+import { stackState } from '../../states/mainPage';
 
 import * as S from './SearchInput.style';
 import searchIcon from '../../asset/images/loupe.png';
