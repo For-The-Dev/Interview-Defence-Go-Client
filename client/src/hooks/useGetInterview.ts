@@ -15,10 +15,9 @@ const useGetInterview = (stacks: string) => {
   const getQuestionsCount = getStacksCount >= 5 ? getStacksCount : 5;
 
   const { data = [], isLoading } = useQuery(
-    [queryKey.getInterviews, stacks],
+    [queryKey.getInterviews, { stacks }],
     () => getInterView(stacks),
     {
-      keepPreviousData: true,
       staleTime: ONEMIN * 3 * getQuestionsCount + ONEMIN,
       cacheTime: ONEMIN * 3 * getQuestionsCount * 1.5,
     },

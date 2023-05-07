@@ -38,9 +38,9 @@ const useSubmitAnswer = (): UseSubmitType => {
     (submitData: SubmitData[]) => submitAnswer(submitData),
     {
       onSuccess: (data) => {
-        // userInfo, preview, detailQa
-        queryClient.invalidateQueries([queryKey.userInfo]);
-        queryClient.invalidateQueries([queryKey.userQAPreview]);
+        // invalidateQueries는 단순히 무효화만 시킬뿐 refetching을 시키지 않는다.
+        queryClient.refetchQueries([queryKey.userInfo]);
+        queryClient.refetchQueries([queryKey.userQAPreview]);
         queryClient.removeQueries([queryKey.getInterviews]);
         queryClient.setQueryData([queryKey.answer], data.data);
         navigate('/result');

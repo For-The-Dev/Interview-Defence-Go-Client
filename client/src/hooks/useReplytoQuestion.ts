@@ -27,8 +27,8 @@ const useReplytoQuestion = (id: string) => {
     },
     {
       onSuccess: (data) => {
-        queryClient.invalidateQueries([queryKey.userInfo]);
-        queryClient.invalidateQueries([queryKey.detailQA, +id]);
+        queryClient.refetchQueries([queryKey.userInfo]);
+        queryClient.refetchQueries([queryKey.detailQA, +id]);
         queryClient.setQueryData([queryKey.answer], data.data);
         navigate('/result');
       },
