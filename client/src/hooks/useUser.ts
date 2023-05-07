@@ -12,7 +12,7 @@ interface User {
 }
 
 interface UseUser {
-  user: User | null | undefined;
+  user: User | null;
   isLoading: boolean;
   isError: boolean;
 }
@@ -29,7 +29,7 @@ const getUser = async (): Promise<User | null> => {
 
 export default function useUser(): UseUser {
   const currentToken = localStorage.getItem('token');
-  const { data: user, isLoading, isError } = useQuery([queryKey.userInfo], getUser);
+  const { data: user = null, isLoading, isError } = useQuery([queryKey.userInfo], getUser);
 
   const queryClient = useQueryClient();
 

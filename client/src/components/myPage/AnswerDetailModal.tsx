@@ -29,7 +29,7 @@ const AnswerDetailModal = ({ questionId, changeModalState }: AnswerDetailModalPr
   const navigate = useNavigate();
 
   const moveToQuestionId = () => {
-    navigate(`/interview?edit=${questionId}`);
+    navigate(`/interview/${questionId}`);
   };
 
   const handler = (e: MouseEvent) => {

@@ -19,7 +19,7 @@ const Profile = ({ avatar_url, nickName, todayQACnt, alldayQACnt }: UserProfileP
       count: todayQACnt,
     },
     {
-      description: '오늘의 답변',
+      description: '모든 답변',
       count: alldayQACnt,
     },
   ];
