@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { GNV } from '../components/GNV';
+import { GNB } from '../components/GNB/GNB';
 
 interface LayoutProps {
   router: ReactNode;
@@ -9,7 +9,7 @@ interface LayoutProps {
 const Layout = ({ router }: LayoutProps) => {
   return (
     <MainContainer>
-      <GNV />
+      <GNB />
       <PageContainer>{router}</PageContainer>
     </MainContainer>
   );
@@ -28,7 +28,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
   height: 100%;
   @media screen and (max-width: 480px) {
     width: 100%;
