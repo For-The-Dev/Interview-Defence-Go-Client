@@ -11,6 +11,10 @@ export const MainLogo = styled.div`
   min-height: 70px;
   font-size: 30px;
   font-weight: bold;
+
+  > h2 {
+    cursor: pointer;
+  }
 `;
 
 export const MainText = styled.div`
