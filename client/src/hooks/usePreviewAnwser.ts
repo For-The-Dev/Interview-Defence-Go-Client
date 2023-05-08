@@ -28,7 +28,7 @@ const getPreviewAnswers = async (page: number): Promise<PreviewAnswer> => {
 };
 
 const usePreviewAnwser = (page: number) => {
-  const { data, isLoading } = useQuery([queryKey.userQAPreview, page], () =>
+  const { data, isLoading } = useQuery([queryKey.userQAPreview, { page: +page }], () =>
     getPreviewAnswers(page),
   );
   return { data, isLoading };

@@ -24,6 +24,11 @@ const AnswersPreview = ({ changeModalState }: AnswerPreviewProps) => {
     if (isLoading) {
       return <Loading />;
     }
+
+    if (data && data.data.length <= 0) {
+      return <div className="alertNoData">작성된 인터뷰가 없습니다.</div>;
+    }
+
     if (!isLoading && data) {
       return data.data.map((preview) => (
         <Content
@@ -35,8 +40,6 @@ const AnswersPreview = ({ changeModalState }: AnswerPreviewProps) => {
           changeModalState={changeModalState}
         />
       ));
-    } else {
-      return <div className="alertNoData">작성된 인터뷰가 없습니다.</div>;
     }
   };
 

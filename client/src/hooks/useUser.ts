@@ -34,7 +34,7 @@ export default function useUser(): UseUser {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.invalidateQueries([queryKey.userInfo]);
+    queryClient.refetchQueries([queryKey.userInfo]);
   }, [queryClient, currentToken]);
 
   return { user, isLoading, isError };
