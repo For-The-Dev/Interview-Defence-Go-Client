@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router';
-import styled from 'styled-components';
-import { Accordion } from '../components/Accordion';
-import Button from '../components/common/Button';
 import { useQueryClient } from '@tanstack/react-query';
+
 import queryKey from '../react-query/queryKey';
+
+import Accordion from '../components/resultPage/Accordion';
+import Button from '../components/common/Button';
+
+import * as S from '../styles/ResultPage.style';
 
 interface resultDataType {
   question: string;
@@ -11,46 +14,14 @@ interface resultDataType {
   userAnswer: string;
 }
 
-const ResultContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 20px;
-`;
-
-const AccordionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  > :first-child {
-    > :first-child {
-      > :first-child {
-        border-radius: 5px 5px 0 0;
-      }
-    }
-  }
-
-  > :last-child {
-    margin-bottom: 20px;
-    > :first-child {
-      > :first-child {
-        border-radius: 0 0 5px 5px;
-      }
-    }
-  }
-`;
-
-const Result = () => {
+const ResultPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const resultData: resultDataType[] | undefined = queryClient.getQueryData([queryKey.answer]);
 
   return (
-    <ResultContainer>
-      <AccordionContainer>
+    <S.ResultContainer>
+      <S.AccordionContainer>
         {resultData !== undefined
           ? resultData.map(({ question, aiAnswer, userAnswer }, index: number) => (
               <Accordion
@@ -62,10 +33,10 @@ const Result = () => {
               />
             ))
           : null}
-      </AccordionContainer>
+      </S.AccordionContainer>
       <Button onClick={() => navigate('/')} value="Home"></Button>
-    </ResultContainer>
+    </S.ResultContainer>
   );
 };
 
-export default Result;
+export default ResultPage;

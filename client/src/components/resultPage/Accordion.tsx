@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import * as S from './Accordion.style';
 
 interface resultDataType {
@@ -8,17 +9,13 @@ interface resultDataType {
   index: number;
 }
 
-export const Accordion = ({ question, aiAnswer, userAnswer, index }: resultDataType) => {
+const Accordion = ({ question, aiAnswer, userAnswer, index }: resultDataType) => {
   const [checked, setChecked] = useState(false);
-
-  const handleChecked = () => {
-    setChecked(!checked);
-  };
 
   return (
     <S.AccodionArea>
       <S.ContentBox>
-        <S.Label active={checked} onClick={handleChecked}>
+        <S.Label active={checked} onClick={() => setChecked(!checked)}>
           {`Q${index + 1}. ${question}`}
         </S.Label>
         <S.Content active={checked}>
@@ -35,3 +32,5 @@ export const Accordion = ({ question, aiAnswer, userAnswer, index }: resultDataT
     </S.AccodionArea>
   );
 };
+
+export default Accordion;

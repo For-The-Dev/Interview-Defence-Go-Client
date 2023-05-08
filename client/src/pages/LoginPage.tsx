@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-const Login = () => {
+const LoginPage = () => {
   const [params] = useSearchParams();
   const token = params.get('token');
   const navigate = useNavigate();
@@ -16,4 +16,4 @@ const Login = () => {
   return <div>Login...</div>;
 };
 
-export default Login;
+export default LoginPage;

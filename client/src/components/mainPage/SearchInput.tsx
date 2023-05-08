@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
-import { stackList } from '../../data/stacks';
 import { stackState } from '../../states/mainPage';
+
+import { stackList } from '../../data/stacks';
 
 import * as S from './SearchInput.style';
 import searchIcon from '../../asset/images/loupe.png';
@@ -35,22 +36,14 @@ const SearchComponent = () => {
     setOn(false);
   };
 
-  const handleFocusIn = () => {
-    setOn(true);
-  };
-
-  const handleFocusOut = () => {
-    setOn(false);
-  };
-
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }} onBlur={handleFocusOut}>
+    <div style={{ display: 'flex', justifyContent: 'center' }} onBlur={() => setOn(false)}>
       <S.SearchBox onSubmit={handleSubmit(handleValid)}>
         <S.SearchInput
           {...register('stack', { required: '스택을 입력해주세요' })}
           placeholder="보유 기술을 검색해주세요."
           autoComplete="off"
-          onFocus={handleFocusIn}
+          onFocus={() => setOn(true)}
         />
         <S.SearchButton>
           <S.SearchImg src={searchIcon} />

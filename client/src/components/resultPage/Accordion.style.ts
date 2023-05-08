@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import arrowIcon from '../asset/images/arrow.png';
+import arrowIcon from '../../asset/images/arrow.png';
 
 export const AccodionArea = styled.div`
   @media screen and (max-width: 500px) {

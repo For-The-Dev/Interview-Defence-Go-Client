@@ -1,15 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
 import { modalState, stackState } from '../../states/mainPage';
+
 import Button from '../common/Button';
+
 import * as S from './ConfirmModal.style';
 
-export const ConfirmModal = () => {
+const ConfirmModal = () => {
   const stacks = useRecoilValue(stackState);
-  const [modal, setModalState] = useRecoilState(modalState);
+  const setModalState = useSetRecoilState(modalState);
   const navigate = useNavigate();
 
-  const moveToSearch = () => {
+  const moveToInterview = () => {
     navigate(`/interview?stacks=${stacks.join(',')}`);
   };
 
@@ -30,10 +33,12 @@ export const ConfirmModal = () => {
             width: '100%',
           }}
         >
-          <Button value="Yes" onClick={moveToSearch} />
+          <Button value="Yes" onClick={moveToInterview} />
           <Button btnType="SUB" value="No" onClick={() => setModalState(false)} />
         </div>
       </S.Modal>
     </S.ModalSection>
   );
 };
+
+export default ConfirmModal;

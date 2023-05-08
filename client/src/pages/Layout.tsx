@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { GNB } from '../components/common/GNB';
+import { GNB } from '../components/GNB/GNB';
 
 interface LayoutProps {
   router: ReactNode;

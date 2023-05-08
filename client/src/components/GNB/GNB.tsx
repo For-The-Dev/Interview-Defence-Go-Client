@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { UserInfomationDropBox } from '../UserInfomationDropBox';
+
+import useUser from '../../hooks/useUser';
+
+import { UserInfomationDropBox } from './UserInfomationDropBox';
 
 import * as S from './GNB.style';
-import useUser from '../../hooks/useUser';
 import userIcon from '../../asset/images/userIcon.png';
 
 export const GNB = () => {
