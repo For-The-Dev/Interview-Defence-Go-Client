@@ -34,6 +34,7 @@ export default function useUser(): UseUser {
   const queryClient = useQueryClient();
 
   useEffect(() => {
+    console.log(queryClient.getQueryCache());
     queryClient.refetchQueries([queryKey.userInfo]);
   }, [queryClient, currentToken]);
 
