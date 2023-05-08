@@ -41,7 +41,7 @@ const MainPage = () => {
   };
 
   const moveToLogin = () => {
-    return window.location.assign(`${process.env.REACT_APP_SERVER_URL}/api/auth/github`);
+    return window.location.assign(`${process.env.REACT_APP_SERVER_URL}/auth/github`);
   };
 
   return (
