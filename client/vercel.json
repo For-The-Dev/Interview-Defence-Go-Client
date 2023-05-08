@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://indego-server.fly.dev/api/:path*"
-    }
-  ]
-}

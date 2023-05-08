@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-const baseUrl = `${process.env.REACT_APP_SERVER_URL}/api`;
+const baseUrl = process.env.REACT_APP_SERVER_URL;
 axios.defaults.withCredentials = true;
 
 const Api = axios.create({
