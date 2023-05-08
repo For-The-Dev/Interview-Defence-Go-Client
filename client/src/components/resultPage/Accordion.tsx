@@ -16,7 +16,7 @@ const Accordion = ({ question, aiAnswer, userAnswer, index }: resultDataType) =>
     <S.AccodionArea>
       <S.ContentBox>
         <S.Label active={checked} onClick={() => setChecked(!checked)}>
-          {`Q${index + 1}. ${question}`}
+          <p>{`Q${index + 1}. ${question}`}</p>
         </S.Label>
         <S.Content active={checked}>
           <S.MyAnswer>

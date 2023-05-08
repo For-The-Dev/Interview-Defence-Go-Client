@@ -13,6 +13,7 @@ const ConfirmModal = () => {
   const navigate = useNavigate();
 
   const moveToInterview = () => {
+    setModalState(false);
     navigate(`/interview?stacks=${stacks.join(',')}`);
   };
 
