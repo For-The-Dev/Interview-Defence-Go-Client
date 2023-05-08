@@ -41,17 +41,7 @@ export const Label = styled.div<{ active: boolean }>`
   }
 
   > p {
-    @media screen and (max-width: 500px) {
-      width: 300px;
-    }
-
-    @media screen and (min-width: 501px) and (max-width: 800px) {
-      width: 470px;
-    }
-
-    @media screen and (min-width: 801px) {
-      width: 870px;
-    }
+    width: 90%;
   }
 `;
 
