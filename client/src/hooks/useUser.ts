@@ -21,7 +21,7 @@ const getUser = async (): Promise<User | null> => {
   const token = localStorage.getItem('token');
   if (!token) return null;
   console.log('running');
-
+  console.log(token);
   const { data }: AxiosResponse<User> = await Api.get('/user');
 
   return data;
