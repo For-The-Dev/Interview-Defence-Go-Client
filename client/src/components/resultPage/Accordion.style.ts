@@ -28,6 +28,18 @@ export const Label = styled.div<{ active: boolean }>`
   font-weight: 500;
   cursor: pointer;
 
+  @media screen and (max-width: 500px) {
+    width: 300px;
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 800px) {
+    width: 470px;
+  }
+
+  @media screen and (min-width: 801px) {
+    width: 870px;
+  }
+
   &::before {
     content: '';
     display: inline-block;
