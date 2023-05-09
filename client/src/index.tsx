@@ -1,22 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { ThemeProvider } from 'styled-components';
 import { RecoilRoot } from 'recoil';
-import GlobalStyles from './styles/reset';
-import theme from './styles/theme';
-
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import queryClient from './react-query';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <GlobalStyles />
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <App />
+      {/* ReactQuery를 디버깅할 수 있게 해줌 */}
+      <ReactQueryDevtools />
     </RecoilRoot>
-  </React.StrictMode>,
+  </QueryClientProvider>,
+  // </React.StrictMode>,
 );
