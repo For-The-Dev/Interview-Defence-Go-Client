@@ -11,7 +11,7 @@ interface ContentProps {
 }
 
 const Content = ({ createdAt, question, answer, id, changeModalState }: ContentProps) => {
-  console.log(dayjs(createdAt).subtract(9, 'hour'));
+  console.log(dayjs(createdAt).subtract(9, 'hour').format('YYYY-MM-DD'));
   const editQuestionDate = dayjs(createdAt).subtract(9, 'hour').format('YYYY-MM-DD');
 
   return (
