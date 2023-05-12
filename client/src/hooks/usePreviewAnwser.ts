@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Api from '../apis';
 import queryKey from '../react-query/queryKey';
+import useUser from './useUser';
 
 interface Answers {
   id: number;
@@ -28,8 +29,11 @@ const getPreviewAnswers = async (page: number): Promise<PreviewAnswer> => {
 };
 
 const usePreviewAnwser = (page: number) => {
-  const { data, isLoading } = useQuery([queryKey.userQAPreview, { page: +page }], () =>
-    getPreviewAnswers(page),
+  const { user } = useUser();
+  const { data, isLoading } = useQuery(
+    [queryKey.userQAPreview, { page: +page }],
+    () => getPreviewAnswers(page),
+    { enabled: !!user },
   );
   return { data, isLoading };
 };
