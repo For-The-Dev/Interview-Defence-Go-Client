@@ -10,16 +10,12 @@ export const GNBSection = styled.nav`
   > .noLogin {
     position: fixed;
     top: 5px;
-    right: 20px;
+    right: 15px;
     width: 40px;
     height: 40px;
     background-color: white;
     border-radius: 50px;
     cursor: pointer;
-
-    @media screen and (max-width: 480px) {
-      right: 10px;
-    }
   }
 `;
 
@@ -34,6 +30,6 @@ export const GNBLogo = styled.div`
   cursor: pointer;
 
   @media screen and (max-width: 480px) {
-    left: 5px;
+    left: 10px;
   }
 `;
