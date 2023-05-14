@@ -6,6 +6,7 @@ import { UserInfomationDropBox } from './UserInfomationDropBox';
 
 import * as S from './GNB.style';
 import userIcon from '../../asset/images/userIcon.png';
+import NavLogo from './NavLogo';
 
 export const GNB = () => {
   const navigate = useNavigate();
@@ -17,7 +18,9 @@ export const GNB = () => {
 
   return (
     <S.GNBSection>
-      <S.GNBLogo onClick={() => navigate('/')}>INDeGo</S.GNBLogo>
+      <S.GNBLogo onClick={() => navigate('/')}>
+        <NavLogo />
+      </S.GNBLogo>
       {user ? (
         <UserInfomationDropBox user={user} />
       ) : (
