@@ -10,7 +10,7 @@ export const GNBSection = styled.nav`
   > .noLogin {
     position: fixed;
     top: 5px;
-    right: 55px;
+    right: 15px;
     width: 40px;
     height: 40px;
     background-color: white;
@@ -20,14 +20,16 @@ export const GNBSection = styled.nav`
 `;
 
 export const GNBLogo = styled.div`
-  position: fixed;
-  top: 7px;
-  left: 55px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 20px;
+  height: 100%;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
 
   @media screen and (max-width: 480px) {
-    left: 55px;
+    left: 10px;
   }
 `;

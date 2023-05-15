@@ -21,16 +21,4 @@ Api.interceptors.request.use((config: any) => {
   return config;
 });
 
-Api.interceptors.response.use(
-  (res) => res,
-  async (err: AxiosError) => {
-    const originConfig = err.config;
-    if (err.response?.status === 401) {
-      alert('다시 로그인해주세요');
-      localStorage.removeItem('token');
-    } else {
-      return Promise.reject(err);
-    }
-  },
-);
 export default Api;

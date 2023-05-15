@@ -28,8 +28,18 @@ const getUser = async (): Promise<User | null> => {
 
 export default function useUser(): UseUser {
   const currentToken = localStorage.getItem('token');
-  const { data: user = null, isLoading, isError } = useQuery([queryKey.userInfo], getUser);
-
+  const {
+    data: user = null,
+    isLoading,
+    isError,
+  } = useQuery([queryKey.userInfo], getUser, {
+    onError: (err) => {
+      if (localStorage.getItem('token')) {
+        localStorage.removeItem('token');
+        alert('로그인을 다시 해주세요');
+      }
+    },
+  });
   const queryClient = useQueryClient();
 
   useEffect(() => {

@@ -13,6 +13,7 @@ import Stack from '../components/mainPage/Stack';
 import ConfirmModal from '../components/mainPage/ConfirmModal';
 
 import * as S from '../styles/MainPage.style';
+import MainLogo from '../components/mainPage/MainLogo';
 
 const MainPage = () => {
   const [stack, setStack] = useRecoilState(stackState);
@@ -43,11 +44,10 @@ const MainPage = () => {
   const moveToLogin = () => {
     return window.location.assign(`${process.env.REACT_APP_SERVER_URL}/auth/github`);
   };
-
   return (
     <S.MainContainer>
       <S.MainLogo>
-        <h2>INDeGo</h2>
+        <MainLogo />
       </S.MainLogo>
       <SearchComponent />
       <S.MainText>추천 스택</S.MainText>
