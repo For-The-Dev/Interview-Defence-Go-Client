@@ -9,8 +9,8 @@ const LoginPage = () => {
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token);
-      navigate('/');
     }
+    navigate('/');
   }, []);
 
   return <div>Login...</div>;
