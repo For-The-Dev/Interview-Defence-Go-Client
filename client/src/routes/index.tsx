@@ -7,6 +7,7 @@ import LoginPage from '../pages/LoginPage';
 import ReplyInterview from '../pages/ReplyInterview';
 import PrivateRoute from './PrivateRoute';
 import useUser from '../hooks/useUser';
+import NotFound from './NotFound';
 
 const Routes = () => {
   const { user } = useUser();
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route path="/interview" element={<Interview />} />
         <Route path="/interview/:id" element={<ReplyInterview />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </ReactRoutes>
   );
 };
