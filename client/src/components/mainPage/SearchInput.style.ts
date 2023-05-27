@@ -46,7 +46,7 @@ export const SearchImg = styled.img`
 export const SuggestionKeywords = styled.ul<{ visible: boolean }>`
   display: ${(props) => (props.visible ? 'block' : 'none')};
   position: absolute;
-  top: 161px;
+  top: 201px;
   background-color: white;
   color: black;
   border-radius: 0 0 10px 10px;

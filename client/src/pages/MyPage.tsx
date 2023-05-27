@@ -15,7 +15,7 @@ const PageContainer = styled.div`
 `;
 
 const MyPage = () => {
-  const [questionId, setQuestionIdId] = useState(0);
+  const [questionId, setQuestionId] = useState(0);
   const [modalState, setModalState] = useState(false);
 
   const { user } = useUser();
@@ -24,10 +24,10 @@ const MyPage = () => {
     // id가 전달되면 모달을 세팅, 전달되지 않으면 모달을 close
     if (id) {
       setModalState(true);
-      setQuestionIdId(id);
+      setQuestionId(id);
     } else {
       setModalState(false);
-      setQuestionIdId(0);
+      setQuestionId(0);
     }
   };
 

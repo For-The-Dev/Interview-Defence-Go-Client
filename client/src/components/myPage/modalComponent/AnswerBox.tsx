@@ -1,5 +1,5 @@
+import setTimeToZ from '../../../functions/setTimeToZ';
 import * as S from './AnswerBox.style';
-import dayjs from 'dayjs';
 
 interface AnswerType {
   text: string;
@@ -14,7 +14,7 @@ interface AnswerBoxProps {
 
 const AnswerBox = ({ answer }: AnswerBoxProps) => {
   const { createdAt } = answer;
-  const date = dayjs(createdAt).format('YYYY-MM-DD');
+  const date = setTimeToZ(createdAt);
   return (
     <S.AnswerWrapper>
       <S.Date>{date}</S.Date>

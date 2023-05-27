@@ -1,6 +1,6 @@
 import * as S from './Content.style';
-import dayjs from 'dayjs';
 import arrowIcon from '../../../asset/images/arrow.png';
+import setTimeToZ from '../../../functions/setTimeToZ';
 
 interface ContentProps {
   createdAt: string;
@@ -11,7 +11,7 @@ interface ContentProps {
 }
 
 const Content = ({ createdAt, question, answer, id, changeModalState }: ContentProps) => {
-  const editQuestionDate = dayjs(createdAt).format('YYYY-MM-DD');
+  const editQuestionDate = setTimeToZ(createdAt);
 
   return (
     <S.QuestionWrapper>
