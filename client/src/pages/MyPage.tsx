@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import Profile from '../components/myPage/Profile';
-import AnswersPreview from '../components/myPage/AnswersPreview';
-import { useState } from 'react';
-import AnswerDetailModal from '../components/myPage/AnswerDetailModal';
 import useUser from '../hooks/useUser';
+import AnswersListContainer from '../components/myPage/AnswersListContainer';
 
 const PageContainer = styled.div`
   height: 100%;
@@ -15,21 +13,7 @@ const PageContainer = styled.div`
 `;
 
 const MyPage = () => {
-  const [questionId, setQuestionId] = useState(0);
-  const [modalState, setModalState] = useState(false);
-
   const { user } = useUser();
-
-  const changeModalState = (id?: number) => {
-    // id가 전달되면 모달을 세팅, 전달되지 않으면 모달을 close
-    if (id) {
-      setModalState(true);
-      setQuestionId(id);
-    } else {
-      setModalState(false);
-      setQuestionId(0);
-    }
-  };
 
   return (
     <PageContainer>
@@ -42,11 +26,7 @@ const MyPage = () => {
         />
       )}
 
-      <AnswersPreview changeModalState={changeModalState} />
-
-      {modalState && (
-        <AnswerDetailModal questionId={questionId} changeModalState={changeModalState} />
-      )}
+      <AnswersListContainer />
     </PageContainer>
   );
 };

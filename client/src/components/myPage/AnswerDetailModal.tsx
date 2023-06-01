@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as S from './AnswerDetailModal.style';
 import AnswerBox from './modalComponent/AnswerBox';
 import Button from '../common/Button';
@@ -9,17 +9,6 @@ import Loading from '../common/Loading';
 interface AnswerDetailModalProps {
   questionId: number;
   changeModalState: (id?: number) => void;
-}
-
-interface QuestionType {
-  text: string;
-  id: number;
-  nickName: string;
-  createdAt: string;
-}
-
-interface QaType extends QuestionType {
-  Answers: QuestionType[];
 }
 
 const AnswerDetailModal = ({ questionId, changeModalState }: AnswerDetailModalProps) => {
