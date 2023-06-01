@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './TimerContainer.stlye';
 const BASETIME = 180;
 
@@ -58,4 +58,4 @@ const TimerContainer = ({
   );
 };
 
-export default TimerContainer;
+export default React.memo(TimerContainer);
