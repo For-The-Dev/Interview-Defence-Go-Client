@@ -32,15 +32,17 @@ const SearchComponent = () => {
   const inputValue = watch('stack') || '';
 
   const keywordSelect = (event: React.MouseEvent<HTMLLIElement> | string) => {
-    typeof event === 'string'
-      ? findOrSetStack(event, stackList, stack, setStack, changeToUpperCase)
-      : findOrSetStack(
-          event.currentTarget.textContent || '',
-          stackList,
-          stack,
-          setStack,
-          changeToUpperCase,
-        );
+    if (typeof event === 'string') {
+      findOrSetStack(event, stackList, stack, setStack, changeToUpperCase);
+    } else {
+      findOrSetStack(
+        event.currentTarget.textContent || '',
+        stackList,
+        stack,
+        setStack,
+        changeToUpperCase,
+      );
+    }
     // false로 선택되어있어  검색창이 지워지지도 않고, 키보드 입력값이 돌아가지 않습니다
     // 만약 클릭 시 스택이 바로 선택되게 된다면 연관검색어 창을 꺼주고 값을 비워주는게 어떨까 합니다.
     setOn(true);
