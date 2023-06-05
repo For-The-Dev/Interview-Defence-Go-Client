@@ -65,24 +65,14 @@ const MainPage = () => {
         </S.SelectBox>
       </S.MainSelect>
       <S.MainBottom>
-        {user ? (
-          <Button
-            width={'120px'}
-            height={'60px'}
-            fontSize={'18px'}
-            onClick={moveToConfirm}
-            value="검색"
-          />
-        ) : (
-          <Button
-            width={'120px'}
-            height={'60px'}
-            fontSize={'18px'}
-            onClick={moveToLogin}
-            btnType="LOGIN"
-            value="LOGIN"
-          />
-        )}
+        <Button
+          width={'120px'}
+          height={'60px'}
+          fontSize={'18px'}
+          onClick={user ? moveToConfirm : moveToLogin}
+          btnType={user ? 'MAIN' : 'LOGIN'}
+          value={user ? '검색' : 'LOGIN'}
+        />
       </S.MainBottom>
       {modal && <ConfirmModal />}
     </S.MainContainer>
