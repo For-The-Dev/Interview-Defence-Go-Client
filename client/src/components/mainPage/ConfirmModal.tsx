@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { modalState, stackState } from '../../states/mainPage';
 
@@ -9,7 +9,7 @@ import * as S from './ConfirmModal.style';
 
 const ConfirmModal = () => {
   const stacks = useRecoilValue(stackState);
-  const setModalState = useSetRecoilState(modalState);
+  const [modal, setModalState] = useRecoilState(modalState);
   const navigate = useNavigate();
 
   const moveToInterview = () => {
@@ -17,7 +17,7 @@ const ConfirmModal = () => {
     navigate(`/interview?stacks=${stacks.join(',')}`);
   };
 
-  return (
+  return modal ? (
     <S.ModalSection>
       <S.Modal>
         <div>현재 선택한 스택은</div>
@@ -39,7 +39,7 @@ const ConfirmModal = () => {
         </div>
       </S.Modal>
     </S.ModalSection>
-  );
+  ) : null;
 };
 
 export default ConfirmModal;
