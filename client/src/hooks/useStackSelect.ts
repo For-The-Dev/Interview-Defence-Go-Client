@@ -1,5 +1,5 @@
-import { stackFamily, stackState, stackType } from './../states/mainPage';
-import { useRecoilCallback, SetterOrUpdater } from 'recoil';
+import { stackFamily, stackState } from './../states/mainPage';
+import { useRecoilCallback } from 'recoil';
 
 const useStackSelect = (value: string) => {
   const selectStack = useRecoilCallback(
