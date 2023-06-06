@@ -1,8 +1,23 @@
-import { atom, selector } from 'recoil';
+import { atom, atomFamily, selector } from 'recoil';
 
 export const stackState = atom<string[]>({
   key: 'stack',
   default: [],
+});
+
+export interface stackType {
+  value: string;
+  selected: boolean;
+}
+
+export const stackFamily = atomFamily<stackType, string>({
+  key: 'stacks',
+  default: (stack: string) => {
+    return {
+      value: stack,
+      selected: false,
+    };
+  },
 });
 
 export const checkSelectStack = selector<boolean>({

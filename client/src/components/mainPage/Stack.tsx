@@ -1,7 +1,4 @@
-import { useRecoilValue } from 'recoil';
-
-import { stackState } from '../../states/mainPage';
-
+import React from 'react';
 import styled from 'styled-components';
 
 const StackComponent = styled.div<{ selected: boolean }>`
@@ -20,16 +17,15 @@ const StackComponent = styled.div<{ selected: boolean }>`
 export interface StackProps {
   onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
   value: string;
+  selected: boolean;
 }
 
-const Stack = ({ onClick, value }: StackProps) => {
-  const selected = useRecoilValue(stackState);
-
+const Stack = ({ onClick, value, selected }: StackProps) => {
   return (
-    <StackComponent onClick={onClick} selected={selected.includes(value) ? true : false}>
+    <StackComponent onClick={onClick} selected={selected}>
       {value}
     </StackComponent>
   );
 };
 
-export default Stack;
+export default React.memo(Stack);

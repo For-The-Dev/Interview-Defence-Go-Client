@@ -4,7 +4,7 @@ import MainLogo from '../components/mainPage/MainLogo';
 import SuggestionStackWrapper from '../components/mainPage/SuggestionStackWrapper';
 import StackSubmitWrapper from '../components/mainPage/StackSubmitWrapper';
 import ConfirmModal from '../components/mainPage/ConfirmModal';
-import SelectStackWrapper from '../components/mainPage/SelectStackWrapper';
+import SelectedStackWrapper from '../components/mainPage/SelectedStackWrapper';
 
 const MainPage = () => {
   return (
@@ -16,7 +16,7 @@ const MainPage = () => {
       <S.MainText>추천 스택</S.MainText>
       <SuggestionStackWrapper />
       <S.MainText>현재 선택한 스택</S.MainText>
-      <SelectStackWrapper />
+      <SelectedStackWrapper />
       <StackSubmitWrapper />
       <ConfirmModal />
     </S.MainContainer>
