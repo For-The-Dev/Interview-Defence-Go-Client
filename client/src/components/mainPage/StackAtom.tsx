@@ -1,8 +1,7 @@
-import React from 'react';
 import Stack from './Stack';
 import { stackFamily } from '../../states/mainPage';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
-import selectStack from '../../functions/selectStack';
+import { selectStack } from '../../functions/selectStackFns';
 
 interface StackAtomProps {
   value: string;
