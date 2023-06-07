@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilCallback } from 'recoil';
-import searchIcon from '../../asset/images/loupe.png';
 import { stackList } from '../../data/stacks';
 
 import * as S from './SearchInput.style';

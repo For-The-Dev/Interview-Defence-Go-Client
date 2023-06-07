@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './AnswersPreview.style';
 import Content from './answerPreviewComponent/Content';
 import PageNationContainer from './answerPreviewComponent/PageNationContainer';

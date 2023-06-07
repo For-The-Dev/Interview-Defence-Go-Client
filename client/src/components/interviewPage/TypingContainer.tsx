@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import * as S from './InterviewContainer.style';
 import TimerContainer from './TimerContainer';
 import Button from '../common/Button';
