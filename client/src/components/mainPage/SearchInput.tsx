@@ -1,8 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { SetterOrUpdater, useRecoilCallback, useRecoilState } from 'recoil';
-
-import { stackState } from '../../states/mainPage';
+import { useRecoilCallback } from 'recoil';
 import searchIcon from '../../asset/images/loupe.png';
 import { stackList } from '../../data/stacks';
 
@@ -13,7 +11,11 @@ interface stackForm {
   stack: string;
 }
 
-const SearchComponent = () => {
+interface SearchProps {
+  children: ReactNode;
+}
+
+const SearchComponent = ({ children }: SearchProps) => {
   // 검색 인풋 관련
   const { register, handleSubmit, setValue, watch } = useForm<stackForm>();
 
@@ -65,9 +67,7 @@ const SearchComponent = () => {
           autoComplete="off"
           onFocus={() => setOn(true)}
         />
-        <S.SearchButton>
-          <S.SearchImg src={searchIcon} />
-        </S.SearchButton>
+        {children}
       </S.SearchBox>
       <S.SuggestionKeywords visible={on}>
         {inputValue.length > 0 ? (

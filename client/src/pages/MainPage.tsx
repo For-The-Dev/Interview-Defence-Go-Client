@@ -5,14 +5,19 @@ import SuggestionStackWrapper from '../components/mainPage/SuggestionStackWrappe
 import StackSubmitWrapper from '../components/mainPage/StackSubmitWrapper';
 import ConfirmModal from '../components/mainPage/ConfirmModal';
 import SelectedStackWrapper from '../components/mainPage/SelectedStackWrapper';
-
+import { SearchButton, SearchImg } from '../components/mainPage/SearchInput.style';
+import searchIcon from '../asset/images/loupe.png';
 const MainPage = () => {
   return (
     <S.MainContainer>
       <S.MainLogo>
         <MainLogo />
       </S.MainLogo>
-      <SearchComponent />
+      <SearchComponent>
+        <SearchButton>
+          <SearchImg src={searchIcon} />
+        </SearchButton>
+      </SearchComponent>
       <S.MainText>추천 스택</S.MainText>
       <SuggestionStackWrapper />
       <S.MainText>현재 선택한 스택</S.MainText>
