@@ -61,6 +61,9 @@ export const findOrSetStack =
         ? snapshot.getLoadable(stackFamily(stackList[findSuggestionStack])).getValue()
         : snapshot.getLoadable(stackFamily(typingStack)).getValue();
 
+    // 이미 선택되있는 항목이라면 상태 변경을 진행하지 않음
+    if (typingStackState.selected) return;
+
     // 현재 세팅된 스택에 input에 작성한 스택이 없고 후보군에는 있다면?
     if (findStackIdx === -1 && findSuggestionStack > -1) {
       // 선택 스택에 suggestionStack을 추가
