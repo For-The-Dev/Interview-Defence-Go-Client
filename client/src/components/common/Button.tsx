@@ -1,6 +1,8 @@
 import { CSSProperties } from 'styled-components';
 import * as S from './Button.style';
 import githubLogo from '../../asset/images/github-mark-white.png';
+import React from 'react';
+
 export type BtnType = 'MAIN' | 'SUB' | 'LOGIN';
 
 export interface BtnStyledProps {
@@ -29,4 +31,4 @@ const Button = ({ onClick, value, btnType = 'MAIN', disabled, ...cssProPerty }: 
   );
 };
 
-export default Button;
+export default React.memo(Button);

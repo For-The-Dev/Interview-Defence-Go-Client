@@ -1,25 +1,27 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
-
-import { stackState } from '../../states/mainPage';
-
+import { useRecoilCallback } from 'recoil';
 import { stackList } from '../../data/stacks';
 
 import * as S from './SearchInput.style';
-import searchIcon from '../../asset/images/loupe.png';
+import { findOrSetStack } from '../../functions/selectStackFns';
 
 interface stackForm {
   stack: string;
 }
 
-const SearchComponent = () => {
+interface SearchProps {
+  children: ReactNode;
+}
+
+const SearchComponent = ({ children }: SearchProps) => {
   // 검색 인풋 관련
   const { register, handleSubmit, setValue, watch } = useForm<stackForm>();
-  const [stack, setStack] = useRecoilState(stackState);
+
+  const addStackHandler = useRecoilCallback(findOrSetStack, []);
 
   const handleValid = (newStack: stackForm) => {
-    findOrSetStack(newStack.stack, stackList, stack, setStack, changeToUpperCase);
+    addStackHandler(newStack.stack);
     setValue('stack', '');
     setOn(false);
     blurFunc();
@@ -32,51 +34,20 @@ const SearchComponent = () => {
   const inputValue = watch('stack') || '';
 
   const keywordSelect = (event: React.MouseEvent<HTMLLIElement> | string) => {
-    typeof event === 'string'
-      ? findOrSetStack(event, stackList, stack, setStack, changeToUpperCase)
-      : findOrSetStack(
-          event.currentTarget.textContent || '',
-          stackList,
-          stack,
-          setStack,
-          changeToUpperCase,
-        );
+    if (typeof event === 'string') {
+      addStackHandler(event);
+    } else {
+      addStackHandler(event.currentTarget.textContent || '');
+    }
     // false로 선택되어있어  검색창이 지워지지도 않고, 키보드 입력값이 돌아가지 않습니다
     // 만약 클릭 시 스택이 바로 선택되게 된다면 연관검색어 창을 꺼주고 값을 비워주는게 어떨까 합니다.
     setOn(true);
+    2;
     setValue('stack', '');
     blurFunc();
   };
 
-  const findOrSetStack = (
-    typingStack: string, // 입력값(인풋창)
-    suggestions: string[], // 연관검색어 후보군
-    currentStacks: string[], // 현재 세팅된 Stacks
-    setStack: SetterOrUpdater<string[]>, // Stacks를 바꿀 상태
-    changeToUpperCase: (stack: string) => string, // 대문자 변환 함수
-  ) => {
-    // 사용자가 입력한 입력값 혹은 클릭한 입력값을 대문자로 변경
-    const upperCaseTypingStack = changeToUpperCase(typingStack);
-
-    // 현재 스택들과 입력값이 동일한게 있는 지 확인, 없다면 -1 반환
-    const findStackIdx = currentStacks
-      .map((stack) => stack.toUpperCase())
-      .indexOf(upperCaseTypingStack);
-
-    // 후보군을 전부 대문자화
-    const upperCaseSuggestions = suggestions.map((stack: string) => stack.toUpperCase());
-    // 후보군에 입력값이 있는 지 확인
-    const upperCaseSuggestIdx = upperCaseSuggestions.indexOf(upperCaseTypingStack);
-
-    // 현재 세팅된 스택에 input에 작성한 스택이 없고 후보군에는 있다면?
-    if (findStackIdx === -1 && upperCaseSuggestIdx > -1) {
-      setStack((oldStacks) => [...oldStacks, suggestions[upperCaseSuggestIdx]]);
-    } else if (findStackIdx === -1 && upperCaseSuggestIdx === -1) {
-      // 후보군에도 존재하지 않는다면
-      setStack((oldStacks) => [...oldStacks, typingStack]);
-    }
-  };
-
+  // 결정적으로 해당 함수를 통해서 등록함.
   const changeToUpperCase = (stack: string) => stack.toUpperCase();
 
   const blurFunc = () => {
@@ -95,9 +66,7 @@ const SearchComponent = () => {
           autoComplete="off"
           onFocus={() => setOn(true)}
         />
-        <S.SearchButton>
-          <S.SearchImg src={searchIcon} />
-        </S.SearchButton>
+        {children}
       </S.SearchBox>
       <S.SuggestionKeywords visible={on}>
         {inputValue.length > 0 ? (

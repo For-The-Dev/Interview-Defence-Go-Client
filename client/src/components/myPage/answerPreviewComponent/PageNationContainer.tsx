@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import * as S from './PageNationContainer.style';
 import Pagination from 'react-js-pagination';
 
