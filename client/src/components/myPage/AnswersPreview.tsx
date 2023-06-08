@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './AnswersPreview.style';
 import Content from './answerPreviewComponent/Content';
 import PageNationContainer from './answerPreviewComponent/PageNationContainer';
@@ -44,23 +44,25 @@ const AnswersPreview = ({ changeModalState }: AnswerPreviewProps) => {
   };
 
   return (
-    <S.Container>
-      <S.QuestionContainer>
-        <span className="title">{isLoading ? null : '모든 답변'}</span>
-        <div className="contentWrapper">{mappingContent()}</div>
-      </S.QuestionContainer>
-      {
-        // 렌더링 조건 필요. data의 length가 존재할 때만 실행
-        data?.pageInfo && (
-          <PageNationContainer
-            pageInfo={data.pageInfo}
-            pageNationHandler={pageNationHandler}
-            currentPage={currentPage}
-          />
-        )
-      }
-    </S.Container>
+    <>
+      <S.Container>
+        <S.QuestionContainer>
+          <span className="title">{isLoading ? null : '모든 답변'}</span>
+          <div className="contentWrapper">{mappingContent()}</div>
+        </S.QuestionContainer>
+        {
+          // 렌더링 조건 필요. data의 length가 존재할 때만 실행
+          data?.pageInfo && (
+            <PageNationContainer
+              pageInfo={data.pageInfo}
+              pageNationHandler={pageNationHandler}
+              currentPage={currentPage}
+            />
+          )
+        }
+      </S.Container>
+    </>
   );
 };
 
-export default AnswersPreview;
+export default React.memo(AnswersPreview);
